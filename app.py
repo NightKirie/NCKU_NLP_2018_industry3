@@ -41,7 +41,7 @@ def handle_message(event):
     message = TextSendMessage(text='Hello World')
     line_bot_api.reply_message(
         event.reply_token,
-        message)
+        'Hello World')
 
 import os
 if __name__ == "__main__":
