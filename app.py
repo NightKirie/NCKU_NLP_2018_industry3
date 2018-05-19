@@ -1,5 +1,9 @@
 from flask import Flask, request, abort
-
+import matplotlib.pyplot as pl
+from matplotlib.gridspec import GridSpec
+pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
+pl.rcParams['font.serif']=['Microsoft JhengHei']
+from PIL import Image
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -38,11 +42,98 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(
-        event.reply_token,
-        message)
+    value = [33, 67]
+    value2 = [40, 60]
+    labels = '教師比例', '學生比例'
+    colors = ['lightcoral', 'lightskyblue']
 
+    thegrid = GridSpec(1, 2)
+    pl.subplot(thegrid[0, 0], aspect=1)
+    pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('中葉大學')
+
+    pl.subplot(thegrid[0, 1], aspect=1)
+    pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('小葉大學')
+
+    pl.savefig('01.jpg')
+    #Image.open('01.jpg').show()
+    pl.gcf().clear()
+
+    labels = '中葉大學', '小葉大學'
+
+    thegrid = GridSpec(5, 5, width_ratios=[1, 0.1, 1, 0.1, 1], height_ratios=[1, 0.22, 1, 0.22, 1])
+    pl.subplot(thegrid[0, 0])
+    value3 = [77, 83]
+    pa, pb = pl.bar(labels, value3)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('註冊率(%)')
+
+    pl.subplot(thegrid[0, 2])
+    value4 = [767, 483]
+    pa, pb = pl.bar(labels, value4)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('學生數')
+
+    pl.subplot(thegrid[0, 4])
+    value5 = [55, 63]
+    pa, pb = pl.bar(labels, value5)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('最低錄取分數')
+
+    pl.subplot(thegrid[2, 0])
+    value6 = [234, 189]
+    pa, pb = pl.bar(labels, value6)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('科系經費(萬)')
+
+    pl.subplot(thegrid[2, 2])
+    value7 = [13, 16]
+    pa, pb = pl.bar(labels, value7)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('就業比率(%)')
+
+    pl.subplot(thegrid[2, 4])
+    value8 = [20, 22]
+    pa, pb = pl.bar(labels, value8)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('就業平均薪資(千)')
+
+    pl.subplot(thegrid[4, 0])
+    value9 = [10, 12]
+    pa, pb = pl.bar(labels, value9)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('科系相關大公司就業比率(%)')
+
+    pl.subplot(thegrid[4, 2])
+    value10 = [77, 63]
+    pa, pb = pl.bar(labels, value10)
+    pa.set_facecolor('lightcoral')
+    pb.set_facecolor('lightskyblue')
+    pl.title('考碩班比率(%)')
+
+    pl.savefig('02.jpg')
+    #Image.open('02.jpg').show()
+    pl.gcf().clear()
+
+    message = ImageSendMessage(
+        original_content_url='01.jpg',
+        preview_image_url='01.jpg'
+    )
+    line_bot_api.reply_message(event.reply_token, message)
+
+    message = ImageSendMessage(
+        original_content_url='02.jpg',
+        preview_image_url='02.jpg'
+    )
+    line_bot_api.reply_message(event.reply_token, message)
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
