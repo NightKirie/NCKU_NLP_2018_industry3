@@ -61,7 +61,8 @@ def handle_message(event):
     im = fig2img(figure)
 
     line_bot_api.reply_message(event.reply_token, ImageSendMessage(
-        im
+        original_content_url=im,
+        preview_image_url=im
     ))
 import os
 if __name__ == "__main__":
