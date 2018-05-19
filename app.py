@@ -124,15 +124,10 @@ def handle_message(event):
     pl.gcf().clear()
 
     message = ImageSendMessage(
-        original_content_url='01.jpg',
-        preview_image_url='01.jpg'
+        original_content_url='https://pbs.twimg.com/media/Db7U0hGUQAE1VEw.jpg:large',
+        preview_image_url='https://pbs.twimg.com/media/Db7U0hGUQAE1VEw.jpg:large'
     )
-    line_bot_api.reply_message(event.reply_token, message)
 
-    message = ImageSendMessage(
-        original_content_url='02.jpg',
-        preview_image_url='02.jpg'
-    )
     line_bot_api.reply_message(event.reply_token, message)
 import os
 if __name__ == "__main__":
