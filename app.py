@@ -1,9 +1,4 @@
 from flask import Flask, request, abort
-import matplotlib.pyplot as pl
-from matplotlib.gridspec import GridSpec
-pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
-pl.rcParams['font.serif']=['Microsoft JhengHei']
-from PIL import Image
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -42,12 +37,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = ImageSendMessage(
-        original_content_url='https://truth.bahamut.com.tw/s01/201805/5147c83d710be51e32b29c9b0fc83656.JPG',
-        preview_image_url='https://truth.bahamut.com.tw/s01/201805/5147c83d710be51e32b29c9b0fc83656.JPG'
-    )
 
-    line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.reply_message(event.reply_token, ImageSendMessage(
+        original_content_url='https://i.imgur.com/NSDnLlO.jpg',
+        preview_image_url='https://i.imgur.com/NSDnLlO.jpg'
+    ))
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
