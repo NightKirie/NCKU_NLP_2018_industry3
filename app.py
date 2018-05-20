@@ -145,8 +145,8 @@ def handle_message(event):
             index = random.randint(0, len(images) - 1)
             url = images[index].link
             image_message = ImageSendMessage(
-                original_content_url=url,
-                preview_image_url=url
+                original_content_url=im.tobytes(),
+                preview_image_url=im.tobytes()
             )
             line_bot_api.reply_message(
                 event.reply_token, image_message)
