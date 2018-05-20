@@ -13,6 +13,8 @@ from config import client_id, client_secret, album_id, access_token, refresh_tok
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
+pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
+pl.rcParams['font.serif']=['Microsoft JhengHei']
 from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image
