@@ -128,6 +128,9 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=tempfile_path + "\n" + dist_path + "\n" + dist_name + "\n" + path ))
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text='我的天啊'))
         except:
             line_bot_api.reply_message(
                 event.reply_token,
