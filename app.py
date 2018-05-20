@@ -13,7 +13,7 @@ from config import client_id, client_secret, album_id, access_token, refresh_tok
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
-#from matplotlib.gridspec import GridSpec
+from matplotlib.gridspec import GridSpec
 #import numpy
 #from PIL import Image
 
