@@ -1,13 +1,13 @@
 import random
 from flask import Flask, request, abort
-from imgurpython import ImgurClient
+'''from imgurpython import ImgurClient
 
 from linebot import (
     LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
-)
+)'''
 from linebot.models import *
 
 import tempfile, os
