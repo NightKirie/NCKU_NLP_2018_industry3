@@ -61,6 +61,7 @@ def fig2data(fig):
     buf = numpy.roll(buf, 3, axis=2)
     return buf
 
+
 figure = pl.figure()
 value = [33, 67]
 value2 = [40, 60]
@@ -75,7 +76,8 @@ pl.title('中葉大學')
 pl.subplot(thegrid[0, 1], aspect=1)
 pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
 pl.title('小葉大學')
-
+im = fig2img(figure)
+pl.gcf().clear()
 
 
 
@@ -143,8 +145,8 @@ def handle_message(event):
             index = random.randint(0, len(images) - 1)
             url = images[index].link
             image_message = ImageSendMessage(
-                original_content_url=url,
-                preview_image_url=url
+                original_content_url=im,
+                preview_image_url=im
             )
             line_bot_api.reply_message(
                 event.reply_token, image_message)
