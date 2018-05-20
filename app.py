@@ -123,11 +123,11 @@ def handle_message(event):
             }
             path = os.path.join('static', 'tmp', dist_name)
             image = client.upload_from_path(path, config=config, anon=False)
-            os.remove(path)
-            print(path)
+            #os.remove(path)
+            #print(path)
             image_message = ImageSendMessage(
-                original_content_url=image['link'],
-                preview_image_url=image['link']
+                original_content_url=path,
+                preview_image_url=path
             )
             line_bot_api.reply_message(
                 event.reply_token,[
