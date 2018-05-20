@@ -47,11 +47,11 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):
-        if '教學' in event.message.text
+        if '教學' in event.message.text:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
-        else
+        else:
             img = graphing.drawing(event.message.text) 
             ext = 'png'
             with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
