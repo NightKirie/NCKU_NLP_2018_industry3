@@ -1,4 +1,4 @@
-import graphing
+import graphing 
 import random
 from flask import Flask, abort
 from imgurpython import ImgurClient
@@ -37,7 +37,7 @@ handler = WebhookHandler(line_channel_secret)
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
-
+'''
 def fig2img(fig):
     """
     @brief Convert a Matplotlib figure to a PIL Image in RGBA format and return it
@@ -86,7 +86,7 @@ def test():
     img = fig2img(figure)
     pl.gcf().clear()
     return img
-
+'''
 
 
 @app.route("/callback", methods=['POST'])
@@ -111,7 +111,7 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
-        imgggggg = test()
+        imgggggg = graphing.drawing("師生數量") 
         
         ext = 'png'
         #message_content = line_bot_api.get_message_content(event.message.id)
