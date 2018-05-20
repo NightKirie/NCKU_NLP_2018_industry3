@@ -1,9 +1,9 @@
 # imgur key
-client_id = 'e69de1530215823'
-client_secret = 'fa632f78ea2b97350f980b121e29f0ccb8db71f8'
+client_id = '846220fcc71067f'
+client_secret = '5a06f372fee1871600f301ec0f251d14b0ab3e51'
 album_id = 'ZPZ4RzN'
-access_token = 'f904fff532fee09f4144c6eab3e6f387f8c708b7'
-refresh_token = '42a4807e16cc5fecb19421ec9e5e65294781c707'
+access_token = '3fff62897ba972836bf3a14f7f9e400b27ce2283'
+refresh_token = '233bf869c99885dde16ff4c79b1961ebca98c7ae'
 
 # line bot key
 line_channel_access_token = 'Ie/Zd3EYV5q9mwQjAuEGe2xkjuBH25g0hlzzOu2B+WOFRrluCuvowKaZqmlAN+KMzQkYWA8yiFFjSPN+uuiTYMhU0HNioAv7PqNqTQk14oBZRD/aYQ46faf16HziOZghcxWuYjOXZIZM1jnBMMYdewdB04t89/1O/w1cDnyilFU='
