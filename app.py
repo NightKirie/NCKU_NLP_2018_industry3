@@ -1,6 +1,6 @@
 import graphing 
 import random
-from flask import Flask, abort
+from flask import Flask, abort, request
 from imgurpython import ImgurClient
 from linebot import (
     LineBotApi, WebhookHandler
