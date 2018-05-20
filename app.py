@@ -49,7 +49,7 @@ def handle_message(event):
 +   line_bot_api.reply_message(
 +       event.reply_token,
 +       message)
-    if isinstance(event.message, ImageMessage):
+    '''if isinstance(event.message, ImageMessage):
         ext = 'jpg'
         message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
@@ -104,7 +104,7 @@ def handle_message(event):
                     TextSendMessage(text=' yoyo'),
                     TextSendMessage(text='請傳一張圖片給我')
                 ])
-            return 0
+            return 0'''
 
 
 +import os
