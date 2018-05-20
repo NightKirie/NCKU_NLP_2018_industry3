@@ -1,5 +1,6 @@
+import graphing
 import random
-from flask import Flask, request, abort
+from flask import Flask, abort
 from imgurpython import ImgurClient
 from linebot import (
     LineBotApi, WebhookHandler
@@ -10,6 +11,7 @@ from linebot.exceptions import (
 from linebot.models import *
 import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
+
 '''import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
@@ -22,7 +24,7 @@ pl.rcParams['font.family'] = prop.get_name()
 from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image'''
-import graphing
+
 
 ###above for import package
 
