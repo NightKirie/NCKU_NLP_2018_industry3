@@ -123,12 +123,18 @@ def handle_message(event):
             }
             path = os.path.join('static', 'tmp', dist_name)
             client.upload_from_path(path, config=config, anon=False)
-            #os.remove(path)
+            os.remove(path)
             print(path)
+            images = client.get_album_images(album_id)
+            url = images[0].link
+            image_message = ImageSendMessage(
+                original_content_url=url,
+                preview_image_url=url
+            )
             line_bot_api.reply_message(
                 event.reply_token,[
                 TextSendMessage(text=tempfile_path + "\n" + dist_path + "\n" + dist_name + "\n" + path ),
-                TextSendMessage(text='lololololo')])
+                image_message])
         except:
             line_bot_api.reply_message(
                 event.reply_token,
