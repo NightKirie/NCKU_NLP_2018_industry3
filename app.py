@@ -127,7 +127,7 @@ def handle_message(event):
             print(path)
             
             images = client.get_album_images(album_id)
-            url = image[0].link
+            url = images[0].link
             image_message = ImageSendMessage(
                 original_content_url=url,
                 preview_image_url=url
