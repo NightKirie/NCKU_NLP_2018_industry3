@@ -14,7 +14,7 @@ import matplotlib
 import matplotlib.pyplot as pl
 from matplotlib.gridspec import GridSpec
 import numpy
-from PIL import Image
+#from PIL import Image
 
 ###above for import package
 
