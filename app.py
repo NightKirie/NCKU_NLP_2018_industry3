@@ -13,7 +13,7 @@ from config import client_id, client_secret, album_id, access_token, refresh_tok
 import matplotlib
 import matplotlib.pyplot as pl
 from matplotlib.gridspec import GridSpec
-import numpy
+#import numpy
 #from PIL import Image
 
 ###above for import package
