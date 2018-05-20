@@ -48,10 +48,6 @@ pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
 pl.title('小葉大學')
 
 
-im = fig2img(figure)
-im.show()
-pl.gcf().clear()
-
 
 
 @app.route("/callback", methods=['POST'])
