@@ -105,12 +105,14 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
         imgggggg = test()
-        imgggggg.close()
-        ext = 'jpg'
-        message_content = line_bot_api.get_message_content(event.message.id)
+        
+        ext = 'png'
+        #message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
-            for chunk in message_content.iter_content():
-                tf.write(chunk)
+            #for chunk in message_content.iter_content():
+                #tf.write(chunk)
+            imgggggg.save(tf, "PNG") 
+            imgggggg.cloas()
             tempfile_path = tf.name
 
         dist_path = tempfile_path + '.' + ext
