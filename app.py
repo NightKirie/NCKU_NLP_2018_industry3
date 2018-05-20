@@ -125,7 +125,7 @@ def handle_message(event):
             client.upload_from_path(path, config=config, anon=False)
             os.remove(path)
             print(path)
-            album_remove_images(album_id, 0)
+            
             images = client.get_album_images(album_id)
             url = image[0].link
             image_message = ImageSendMessage(
@@ -136,7 +136,7 @@ def handle_message(event):
                 event.reply_token,[
                 TextSendMessage(text=tempfile_path + "\n" + dist_path + "\n" + dist_name + "\n" + path ),
                 image_message])
-
+            client.album_remove_images(album_id, 0)
         except:
             line_bot_api.reply_message(
                 event.reply_token,
