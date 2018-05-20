@@ -45,6 +45,10 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
+    message = TextSendMessage(text=event.message.text)
++   line_bot_api.reply_message(
++       event.reply_token,
++       message)
     if isinstance(event.message, ImageMessage):
         ext = 'jpg'
         message_content = line_bot_api.get_message_content(event.message.id)
