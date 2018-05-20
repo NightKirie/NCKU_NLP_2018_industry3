@@ -47,41 +47,46 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):
-        img = graphing.drawing(event.message.tex) 
-        ext = 'png'
-        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
-            img.save(tf, "PNG") 
-            img.close()
-            tempfile_path = tf.name
+        if '教學' in event.message.text
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
+        else
+            img = graphing.drawing(event.message.text) 
+            ext = 'png'
+            with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+                img.save(tf, "PNG") 
+                img.close()
+                tempfile_path = tf.name
 
-        dist_path = tempfile_path + '.' + ext
-        dist_name = os.path.basename(dist_path)
-        os.rename(tempfile_path, dist_path)
-        try:
-            client = ImgurClient(client_id, client_secret, access_token, refresh_token)
-            config = {
-                'album': album_id,
-                'name': 'Catastrophe!',
-                'title': 'Catastrophe!',
-                'description': 'Cute kitten being cute on '
-            }
-            path = os.path.join('static', 'tmp', dist_name)
-            image = client.upload_from_path(path, config=config, anon=False)
-            os.remove(path)
-            print(path)
-            image_message = ImageSendMessage(
-                original_content_url=image['link'],
-                preview_image_url=image['link']
-            )
-            line_bot_api.reply_message(
-                event.reply_token,[
-                TextSendMessage(text='以下是您所查詢的資料'),
-                image_message])
-        except:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text='操作失敗，請重新輸入'))
-        return 0
+            dist_path = tempfile_path + '.' + ext
+            dist_name = os.path.basename(dist_path)
+            os.rename(tempfile_path, dist_path)
+            try:
+                client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+                config = {
+                    'album': album_id,
+                    'name': 'Catastrophe!',
+                    'title': 'Catastrophe!',
+                    'description': 'Cute kitten being cute on '
+                }
+                path = os.path.join('static', 'tmp', dist_name)
+                image = client.upload_from_path(path, config=config, anon=False)
+                os.remove(path)
+                print(path)
+                image_message = ImageSendMessage(
+                    original_content_url=image['link'],
+                    preview_image_url=image['link']
+                )
+                line_bot_api.reply_message(
+                    event.reply_token,[
+                    TextSendMessage(text='以下是您所查詢的資料'),
+                    image_message])
+            except:
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text='操作失敗，請重新輸入'))
+            return 0
 '''
     elif isinstance(event.message, VideoMessage):
         ext = 'mp4'
