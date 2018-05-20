@@ -33,6 +33,24 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
 figure = pl.figure()
+value = [33, 67]
+value2 = [40, 60]
+labels = '教師比例', '學生比例'
+colors = ['lightcoral', 'lightskyblue']
+
+thegrid = GridSpec(1, 2)
+pl.subplot(thegrid[0, 0], aspect=1)
+pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+pl.title('中葉大學')
+
+pl.subplot(thegrid[0, 1], aspect=1)
+pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+pl.title('小葉大學')
+
+
+im = fig2img(figure)
+im.show()
+pl.gcf().clear()
 
 
 
