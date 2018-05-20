@@ -51,6 +51,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
+            return 0
         elif '師生數量' in event.message.text:
             img = graphing.drawing(event.message.text) 
             ext = 'png'
