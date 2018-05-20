@@ -61,23 +61,24 @@ def fig2data(fig):
     buf = numpy.roll(buf, 3, axis=2)
     return buf
 
+def test():
+    figure = pl.figure()
+    value = [33, 67]
+    value2 = [40, 60]
+    labels = '教師比例', '學生比例'
+    colors = ['lightcoral', 'lightskyblue']
 
-figure = pl.figure()
-value = [33, 67]
-value2 = [40, 60]
-labels = '教師比例', '學生比例'
-colors = ['lightcoral', 'lightskyblue']
+    thegrid = GridSpec(1, 2)
+    pl.subplot(thegrid[0, 0], aspect=1)
+    pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('中葉大學')
 
-thegrid = GridSpec(1, 2)
-pl.subplot(thegrid[0, 0], aspect=1)
-pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
-pl.title('中葉大學')
-
-pl.subplot(thegrid[0, 1], aspect=1)
-pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
-pl.title('小葉大學')
-im = fig2img(figure)
-pl.gcf().clear()
+    pl.subplot(thegrid[0, 1], aspect=1)
+    pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('小葉大學')
+    img = fig2img(figure)
+    pl.gcf().clear()
+    return img
 
 
 
@@ -103,6 +104,7 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
+        img = test()
         ext = 'jpg'
         message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
@@ -122,12 +124,12 @@ def handle_message(event):
                 'description': 'Cute kitten being cute on '
             }
             path = os.path.join('static', 'tmp', dist_name)
-            image = client.upload_from_path(path, config=config, anon=False)
+            image = client.upload_from_path(img, config=config, anon=False)
             os.remove(path)
             print(path)
             image_message = ImageSendMessage(
-                original_content_url=url,
-                preview_image_url=url
+                original_content_url=image['link'],
+                preview_image_url=image['link']
             )
             line_bot_api.reply_message(
                 event.reply_token,[
