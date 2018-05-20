@@ -31,6 +31,51 @@ handler = WebhookHandler(line_channel_secret)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
+
+
+
+def fig2data(fig):
+    """
+    @brief Convert a Matplotlib figure to a 4D numpy array with RGBA channels and return it
+    @param fig a matplotlib figure
+    @return a numpy 3D array of RGBA values
+    """
+    # draw the renderer
+    fig.canvas.draw()
+
+    # Get the RGBA buffer from the figure
+    w, h = fig.canvas.get_width_height()
+    buf = numpy.fromstring(fig.canvas.tostring_argb(), dtype=numpy.uint8)
+    buf.shape = (w, h, 4)
+
+    # canvas.tostring_argb give pixmap in ARGB mode. Roll the ALPHA channel to have it in RGBA mode
+    buf = numpy.roll(buf, 3, axis=2)
+    return buf
+
+def plot()
+    figure = pl.figure()
+    value = [33, 67]
+    value2 = [40, 60]
+    labels = '教師比例', '學生比例'
+    colors = ['lightcoral', 'lightskyblue']
+
+    thegrid = GridSpec(1, 2)
+    pl.subplot(thegrid[0, 0], aspect=1)
+    pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('中葉大學')
+
+    pl.subplot(thegrid[0, 1], aspect=1)
+    pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
+    pl.title('小葉大學')
+
+
+    im = fig2img(figure)
+    im.show()
+    pl.gcf().clear()
+
+
+
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
