@@ -32,7 +32,16 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
 
-
+def fig2img(fig):
+    """
+    @brief Convert a Matplotlib figure to a PIL Image in RGBA format and return it
+    @param fig a matplotlib figure
+    @return a Python Imaging Library ( PIL ) image
+    """
+    # put the figure pixmap into a numpy array
+    buf = fig2data(fig)
+    w, h, d = buf.shape
+    return Image.frombytes("RGBA", (w, h), buf.tostring())
 
 def fig2data(fig):
     """
