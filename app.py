@@ -172,7 +172,11 @@ def handle_message(event):
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
             return 0
-
+        else:
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="不好意思，您的輸入沒有支援的內容可以呈現\n"))
+            return 0
 
 
 if __name__ == '__main__':
