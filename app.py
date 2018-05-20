@@ -13,8 +13,12 @@ from config import client_id, client_secret, album_id, access_token, refresh_tok
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
-pl.rcParams['font.family'] = 'Microsoft YaHei'  
-pl.rcParams['font.sans-serif'] = ['Microsoft YaHei'] #更新字体格式 
+import matplotlib.font_manager as font_manager
+path = 'msjh.ttf'
+prop = font_manager.FontProperties(fname=path)
+pl.rcParams['font.family'] = prop.get_name()
+##pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
+##pl.rcParams['font.serif']=['Microsoft JhengHei']
 from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image
