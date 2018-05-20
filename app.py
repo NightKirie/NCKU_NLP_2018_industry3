@@ -12,20 +12,6 @@ from linebot.models import *
 import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 
-'''import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as pl
-import matplotlib.font_manager as font_manager
-path = 'kaiu.ttf'
-prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop.get_name()
-##pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
-##pl.rcParams['font.serif']=['Microsoft JhengHei']
-from matplotlib.gridspec import GridSpec
-import numpy
-from PIL import Image'''
-
-
 ###above for import package
 
 
@@ -37,56 +23,6 @@ handler = WebhookHandler(line_channel_secret)
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
-'''
-def fig2img(fig):
-    """
-    @brief Convert a Matplotlib figure to a PIL Image in RGBA format and return it
-    @param fig a matplotlib figure
-    @return a Python Imaging Library ( PIL ) image
-    """
-    # put the figure pixmap into a numpy array
-    buf = fig2data(fig)
-    w, h, d = buf.shape
-    return Image.frombytes("RGBA", (w, h), buf.tostring())
-
-
-def fig2data(fig):
-    """
-    @brief Convert a Matplotlib figure to a 4D numpy array with RGBA channels and return it
-    @param fig a matplotlib figure
-    @return a numpy 3D array of RGBA values
-    """
-    # draw the renderer
-    fig.canvas.draw()
-
-    # Get the RGBA buffer from the figure
-    w, h = fig.canvas.get_width_height()
-    buf = numpy.fromstring(fig.canvas.tostring_argb(), dtype=numpy.uint8)
-    buf.shape = (w, h, 4)
-
-    # canvas.tostring_argb give pixmap in ARGB mode. Roll the ALPHA channel to have it in RGBA mode
-    buf = numpy.roll(buf, 3, axis=2)
-    return buf
-
-def test():
-    figure = pl.figure()
-    value = [33, 67]
-    value2 = [40, 60]
-    labels = '教師比例', '學生比例'
-    colors = ['lightcoral', 'lightskyblue']
-
-    thegrid = GridSpec(1, 2)
-    pl.subplot(thegrid[0, 0], aspect=1)
-    pl.pie(value, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
-    pl.title('中葉大學')
-
-    pl.subplot(thegrid[0, 1], aspect=1)
-    pl.pie(value2, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True)
-    pl.title('小葉大學')
-    img = fig2img(figure)
-    pl.gcf().clear()
-    return img
-'''
 
 
 @app.route("/callback", methods=['POST'])
@@ -110,16 +46,12 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
-    if isinstance(event.message, ImageMessage):
-        imgggggg = graphing.drawing("師生數量") 
-        
+    if isinstance(event.message, TextMessage):
+        img = graphing.drawing(event.message.tex) 
         ext = 'png'
-        #message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
-            ##for chunk in message_content.iter_content():
-               # tf.write(chunk)
-            imgggggg.save(tf, "PNG") 
-            imgggggg.close()
+            img.save(tf, "PNG") 
+            img.close()
             tempfile_path = tf.name
 
         dist_path = tempfile_path + '.' + ext
@@ -143,14 +75,14 @@ def handle_message(event):
             )
             line_bot_api.reply_message(
                 event.reply_token,[
-                TextSendMessage(text=tempfile_path + "\n" + dist_path),
+                TextSendMessage(text='以下是您所查詢的資料'),
                 image_message])
         except:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text='上傳失敗'))
+                TextSendMessage(text='操作失敗，請重新輸入'))
         return 0
-
+'''
     elif isinstance(event.message, VideoMessage):
         ext = 'mp4'
     elif isinstance(event.message, AudioMessage):
@@ -174,7 +106,7 @@ def handle_message(event):
                     TextSendMessage(text=' yoyo'),
                     TextSendMessage(text='請傳一張圖片給我')
                 ])
-            return 0
+            return 0'''
 
 
 if __name__ == '__main__':
