@@ -126,8 +126,8 @@ def handle_message(event):
             os.remove(path)
             print(path)
             image_message = ImageSendMessage(
-                original_content_url=image['link'],
-                preview_image_url=image['link']
+                original_content_url=image.link,
+                preview_image_url=image.link
             )
             line_bot_api.reply_message(
                 event.reply_token,[
