@@ -43,7 +43,7 @@ def callback():
     return 'ok'
 
 
-@handler.add(MessageEvent, message=(ImageMessage, TextMessage))
+@handler.add(MessageEvent, message= TextMessage)#(ImageMessage, TextMessage))
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
 +   line_bot_api.reply_message(
