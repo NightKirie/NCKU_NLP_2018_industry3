@@ -124,7 +124,7 @@ def handle_message(event):
                 'description': 'Cute kitten being cute on '
             }
             path = os.path.join('static', 'tmp', dist_name)
-            image = client.upload_from_path(img, config=config, anon=False)
+            image = client.upload_from_path(path, config=config, anon=False)
             os.remove(path)
             print(path)
             image_message = ImageSendMessage(
@@ -134,7 +134,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,[
                 TextSendMessage(text=image['link']),
-                image_message])
+                img])
         except:
             line_bot_api.reply_message(
                 event.reply_token,
