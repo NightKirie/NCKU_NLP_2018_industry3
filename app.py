@@ -127,7 +127,7 @@ def handle_message(event):
             print(path)
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=tempfile_path))
+                TextSendMessage(text=tempfile_path + "\n" + dist_path + "\n" + dist_name + "\n" + path ))
         except:
             line_bot_api.reply_message(
                 event.reply_token,
