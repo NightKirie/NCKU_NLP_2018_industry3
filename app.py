@@ -104,7 +104,7 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
         ext = 'jpg'
-        message_content = im
+        message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
@@ -127,7 +127,8 @@ def handle_message(event):
             print(path)
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text='上傳成功'))
+                TextSendMessage(text='上傳成功'),
+                TextSendMessage(text='幹'))
         except:
             line_bot_api.reply_message(
                 event.reply_token,
