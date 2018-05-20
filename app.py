@@ -12,7 +12,7 @@ import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 import matplotlib
 matplotlib.use('Agg')
-
+import matplotlib.pyplot as pltsdfsdfsdfdsfsd
 ##from matplotlib.gridspec import GridSpec
 
 ###above for import package
