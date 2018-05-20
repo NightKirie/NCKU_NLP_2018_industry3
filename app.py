@@ -104,7 +104,7 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
         ext = 'jpg'
-        message_content = line_bot_api.get_message_content(event.message.id)
+        message_content = im
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
@@ -145,8 +145,8 @@ def handle_message(event):
             index = random.randint(0, len(images) - 1)
             url = images[index].link
             image_message = ImageSendMessage(
-                original_content_url='https://i.imgur.com/pOMznOD.jpg',
-                preview_image_url='https://i.imgur.com/pOMznOD.jpg'
+                original_content_url=url,
+                preview_image_url=url
             )
             line_bot_api.reply_message(
                 event.reply_token, image_message)
