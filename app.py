@@ -14,7 +14,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
 import matplotlib.font_manager as font_manager
-path = 'msjh.ttf'
+path = 'kaiu.ttf'
 prop = font_manager.FontProperties(fname=path)
 pl.rcParams['font.family'] = prop.get_name()
 ##pl.rcParams['font.sans-serif']=['Microsoft JhengHei']
