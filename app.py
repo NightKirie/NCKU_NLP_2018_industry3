@@ -10,7 +10,8 @@ from linebot.exceptions import (
 from linebot.models import *
 import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
-from matplotlib import pyplot
+import matplotlib
+matplotlib.use('Agg')
 
 ##from matplotlib.gridspec import GridSpec
 
