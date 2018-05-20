@@ -1,13 +1,13 @@
 import random
 from flask import Flask, request, abort
-'''from imgurpython import ImgurClient
+from imgurpython import ImgurClient
 
 from linebot import (
     LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
-)'''
+)
 from linebot.models import *
 
 import tempfile, os
@@ -43,7 +43,7 @@ def callback():
     return 'ok'
 
 
-@handler.add(MessageEvent, message= TextMessage)#(ImageMessage, TextMessage))
+@handler.add(MessageEvent, message=TextMessage)#(ImageMessage, TextMessage))
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
 +   line_bot_api.reply_message(
