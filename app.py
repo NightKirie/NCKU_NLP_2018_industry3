@@ -32,7 +32,7 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
 
-
+figure = pl.figure()
 
 
 
