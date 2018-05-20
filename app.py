@@ -53,7 +53,7 @@ def handle_message(event):
                     TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
             return 0
         elif '師生數量' in event.message.text:
-            img = graphing.drawing(event.message.text) 
+            img = graphing.drawing('師生數量') 
             ext = 'png'
             with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
                 img.save(tf, "PNG") 
@@ -89,13 +89,13 @@ def handle_message(event):
                     TextSendMessage(text='操作失敗，請重新輸入'))
             return 0
         elif '註冊率' in event.message.text:
-            text = graphing.drawing(event.message.text)
+            text = graphing.drawing('註冊率')
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
             return 0
         elif '就業比例' in event.message.text:
-            img = graphing.drawing(event.message.text) 
+            img = graphing.drawing('就業比例') 
             ext = 'png'
             with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
                 img.save(tf, "PNG") 
@@ -131,7 +131,7 @@ def handle_message(event):
                     TextSendMessage(text='操作失敗，請重新輸入'))
             return 0
         elif '學測分數' in event.message.text:
-            img = graphing.drawing(event.message.text) 
+            img = graphing.drawing('學測分數') 
             ext = 'png'
             with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
                 img.save(tf, "PNG") 
@@ -167,7 +167,7 @@ def handle_message(event):
                     TextSendMessage(text='操作失敗，請重新輸入'))
             return 0
         elif '指考分數' in event.message.text:
-            text = graphing.drawing(event.message.text)
+            text = graphing.drawing('指考分數')
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
