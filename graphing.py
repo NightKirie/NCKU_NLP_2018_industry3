@@ -9,27 +9,23 @@ from io import BytesIO
 # pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
 # pl.rcParams['font.serif'] = ['Microsoft JhengHei']
 '''
+
+'''
 import matplotlib.font_manager as font_manager
 
 path = "kaiu.ttf"
 prop = font_manager.FontProperties(fname=path)
 pl.rcParams['font.family'] = prop.get_name()
-'''
-
 
 '''
-This is English version
-file name: graphing.py
-function bane: drawing
-usage: graphing.drawing("input")
-
-  input       return
-     
-師生數量      image
-註冊率        string 
-就業比例      image
-學測分數      image
-指考分數      string
+檔案名稱: graphing.py
+function名稱: drawing
+輸入為字串
+支援的輸入:  師生數量      回傳:   圖片
+             註冊率                文字 
+             就業比例              圖片
+             學測分數              圖片
+             指考分數              文字
 '''
 
 
@@ -80,7 +76,7 @@ def drawing(string):
         figure = pl.figure()
         thegrid = GridSpec(1, 1)
         pl.subplot(thegrid[0, 0])
-        labels = 'student', 'Full-time teacher', 'Part-time teacher'
+        labels = '學生', '專任教師', '兼任教師'
         value = [21252, 1326, 684]
         width = 0.5
         rects1 = pl.bar(labels, value, width, color='r')
@@ -115,22 +111,22 @@ def drawing(string):
         thegrid = GridSpec(2, 2)
 
         # labels = " ", "  ", "   ", "    ", "     "
-        labels = "working", "military service", "studying", "find a job", "other"
+        labels = "工作中", "服役中", "在學中", "待業", "其他"
 
         pl.subplot(thegrid[0, 0], aspect=1)
         value = [23.61, 3.76, 59.66, 5.71, 7.26]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
-        pl.title('Bachelor')
+        pl.title('學士班')
 
         pl.subplot(thegrid[0, 1], aspect=1)
         value = [71.54, 8.56, 5.67, 10.67, 3.56]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
-        pl.title('master')
+        pl.title('碩士班')
 
         pl.subplot(thegrid[1, 0], aspect=1)
         value = [84.49, 8.02, 0.53, 6.95, 0]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
-        pl.title('doctor')
+        pl.title('博士班')
 
         im = fig2img(figure)
         # im.show()
