@@ -16,7 +16,7 @@ import matplotlib.font_manager as font_manager
 
 path = "static/kaiu.ttf"
 prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop.get_name()
+pl.rcParams['font.family'] = prop.get_family()
 pl.rcParams['font.sans-serif'] = prop.get_name()
 pl.rcParams['font.serif'] = prop.get_name()
 '''
