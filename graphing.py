@@ -19,7 +19,7 @@ prop = font_manager.FontProperties(fname=path)
 pl.rcParams['font.family'] = prop.get_name()
 pl.rcParams['font.sans-serif'] = prop.get_name()
 pl.rcParams['font.serif'] = prop.get_name()
-mpl.rcParams['axes.unicode_minus']=False
+pl.rcParams['axes.unicode_minus']=False
 '''
 檔案名稱: graphing.py
 function名稱: drawing
