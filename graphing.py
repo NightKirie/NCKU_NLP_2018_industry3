@@ -16,9 +16,9 @@ import matplotlib.font_manager as font_manager
 
 path = "static/msjh.ttf"
 prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop.get_name()
-pl.rcParams['font.sans-serif'] = prop.get_name()
-pl.rcParams['font.serif'] = prop.get_name()
+#pl.rcParams['font.family'] = prop.get_name()
+pl.rcParams['font.sans-serif'] = ['simhei']
+pl.rcParams['font.serif'] = ['simhei']
 pl.rcParams['axes.unicode_minus']=False
 '''
 檔案名稱: graphing.py
