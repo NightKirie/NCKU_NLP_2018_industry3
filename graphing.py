@@ -14,7 +14,7 @@ from io import BytesIO
 '''
 import matplotlib.font_manager as font_manager
 
-path = "/static/msjh.ttf"
+path = "static/msjh.ttf"
 prop = font_manager.FontProperties(fname=path)
 pl.rcParams['font.family'] = prop.get_name()
 pl.rcParams['font.sans-serif'] = prop.get_name()
