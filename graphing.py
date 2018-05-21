@@ -16,9 +16,9 @@ import matplotlib.font_manager as font_manager
 
 path = "/static/msjh.ttf"
 prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop
-pl.rcParams['font.sans-serif'] = prop
-pl.rcParams['font.serif'] = prop
+pl.rcParams['font.family'] = prop.get_name()
+pl.rcParams['font.sans-serif'] = prop.get_name()
+pl.rcParams['font.serif'] = prop.get_name()
 '''
 檔案名稱: graphing.py
 function名稱: drawing
