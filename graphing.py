@@ -2,6 +2,13 @@
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
+import matplotlib.font_manager as font_manager
+path = "static/msjh.ttf"
+prop = font_manager.FontProperties(fname=path)
+pl.rcParams['font.family'] = 'sans-serif'
+pl.rcParams['font.sans-serif'] = ['simhei']
+pl.rcParams['font.serif'] = ['simhei']
+pl.rcParams['axes.unicode_minus']=False
 from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image
@@ -12,14 +19,7 @@ from io import BytesIO
 '''
 
 '''
-import matplotlib.font_manager as font_manager
 
-path = "static/msjh.ttf"
-prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = 'sans-serif'
-pl.rcParams['font.sans-serif'] = ['simhei']
-pl.rcParams['font.serif'] = ['simhei']
-pl.rcParams['axes.unicode_minus']=False
 '''
 檔案名稱: graphing.py
 function名稱: drawing
