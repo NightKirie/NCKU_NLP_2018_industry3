@@ -13,7 +13,7 @@ from io import BytesIO
 '''
 import matplotlib.font_manager as font_manager
 
-path = "kaiu.ttf"
+path = "../kaiu.ttf"
 prop = font_manager.FontProperties(fname=path)
 pl.rcParams['font.family'] = prop.get_name()
 
