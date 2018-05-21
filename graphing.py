@@ -14,11 +14,11 @@ from io import BytesIO
 '''
 import matplotlib.font_manager as font_manager
 
-path = "a.ttf"
+path = "/static/msjh.ttf"
 prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop.get_family()
-pl.rcParams['font.sans-serif'] = prop.get_name()
-pl.rcParams['font.serif'] = prop.get_name()
+pl.rcParams['font.family'] = font
+pl.rcParams['font.sans-serif'] = font
+pl.rcParams['font.serif'] = font
 '''
 檔案名稱: graphing.py
 function名稱: drawing
