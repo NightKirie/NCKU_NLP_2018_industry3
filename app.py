@@ -1,4 +1,4 @@
-import graphing 
+import Get_data
 import time
 import random
 from flask import Flask, abort, request
@@ -45,51 +45,108 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
-    if isinstance(event.message, TextMessage):
-        if '教學' in event.message.text:
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
-            return 0
-        elif '師生數量' in event.message.text:
-            img = graphing.drawing('師生數量') 
-            ext = 'png'
-            with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
-                img.save(tf, "PNG") 
-                img.close()
-                tempfile_path = tf.name
+    if isinstance(event.message, TextMessage):	#get input
+        #Down below for test input
+		if '台大' in event.message.text:
+            if	'清大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '台大', '清大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '台大', '清大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '台大', '清大', '資訊', 1, '106指考最低錄取分數'])
+			elif '交大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '台大', '交大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '台大', '交大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '台大', '交大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '台大', '交大', '資訊', 1, '106指考最低錄取分數'])
+			elif '成大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '台大', '成大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '台大', '成大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '台大', '成大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '台大', '成大', '資訊', 1, '106指考最低錄取分數'])
+        elif '清大' in event.message.text:
+			if '交大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '清大', '交大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '清大', '交大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '清大', '交大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '清大', '交大', '資訊', 1, '106指考最低錄取分數'])
+			elif '成大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '清大', '成大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '清大', '成大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '清大', '成大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '清大', '成大', '資訊', 1, '106指考最低錄取分數'])
+		elif '交大' in event.message.text:
+			if '成大' in event.message.text:
+				if '學生數' in event.message.text:
+					global img = Get_data([1, '交大', '成大', '資訊', 1, '學生數'])
+				elif '教師數' in event.message.text:
+					global img = Get_data([1, '交大', '成大', '資訊', 1, '教師數'])
+				elif '上學年度畢業生數' in event.message.text:
+					global img = Get_data([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
+				elif '106指考最低錄取分數' in event.message.text:
+					global img = Get_data([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])
+		global img 
+		ext = 'png'
+		with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+			global img.save(tf, "PNG") 
+			global img.close()
+			tempfile_path = tf.name
 
-            dist_path = tempfile_path + '.' + ext
-            dist_name = os.path.basename(dist_path)
-            os.rename(tempfile_path, dist_path)
-            try:
-                client = ImgurClient(client_id, client_secret, access_token, refresh_token)
-                config = {
-                    'album': album_id,
-                    'name': 'Catastrophe!',
-                    'title': 'Catastrophe!',
-                    'description': 'Cute kitten being cute on '
-                }
-                path = os.path.join('static', 'tmp', dist_name)
-                image = client.upload_from_path(path, config=config, anon=False)
-                os.remove(path)
-                print(path)
-                image_message = ImageSendMessage(
-                    original_content_url=image['link'],
-                    preview_image_url=image['link']
-                )
-                line_bot_api.reply_message(
-                    event.reply_token,[
-                    TextSendMessage(text='以下是您所查詢的資料' + image['link']),   
-                    image_message])
-                time.sleep(1)
-                client.delete_image(image['link'][20:-4])
-            except:
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text='操作失敗，請重新輸入'))
-            return 0
-        elif '註冊率' in event.message.text:
+		dist_path = tempfile_path + '.' + ext
+		dist_name = os.path.basename(dist_path)
+		os.rename(tempfile_path, dist_path)
+		try:
+			client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+			config = {
+				'album': album_id,
+				'name': 'Catastrophe!',
+				'title': 'Catastrophe!',
+				'description': 'Cute kitten being cute on '
+			}
+			path = os.path.join('static', 'tmp', dist_name)
+			image = client.upload_from_path(path, config=config, anon=False)
+			os.remove(path)
+			print(path)
+			image_message = ImageSendMessage(
+				original_content_url=image['link'],
+				preview_image_url=image['link']
+			)
+			line_bot_api.reply_message(
+				event.reply_token,[
+				TextSendMessage(text='以下是您所查詢的資料' + image['link']),   
+				image_message])
+			time.sleep(1)
+			client.delete_image(image['link'][20:-4])
+		except:
+			line_bot_api.reply_message(
+				event.reply_token,
+				TextSendMessage(text='操作失敗，請重新輸入'))
+		return 0
+			
+			
+			
+			
+			
+        '''elif '註冊率' in event.message.text:
             text = graphing.drawing('註冊率')
             line_bot_api.reply_message(
                     event.reply_token,
@@ -172,7 +229,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
-            return 0
+            return 0'''
         else:
             line_bot_api.reply_message(
                     event.reply_token,

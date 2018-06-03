@@ -8,23 +8,8 @@ import numpy
 from PIL import Image
 import requests
 from io import BytesIO
-pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
-pl.rcParams['font.serif'] = ['Microsoft JhengHei']
-'''
-
-'''
-
-'''
-檔案名稱: graphing.py
-function名稱: drawing
-輸入為字串
-支援的輸入:  師生數量      回傳:   圖片
-             註冊率                文字 
-             就業比例              圖片
-             學測分數              圖片
-             指考分數              文字
-'''
-
+pl.rcParams['font.sans-serif'] = ['DFKai-SB']
+pl.rcParams['font.serif'] = ['DFKai-SB']
 
 def fig2img(fig):
     """
@@ -56,7 +41,6 @@ def fig2data(fig):
     buf = numpy.roll(buf, 3, axis=2)
     return buf
 
-
 def autolabel(rects):
     """
     Attach a text label above each bar displaying its height
@@ -68,6 +52,112 @@ def autolabel(rects):
                 ha='center', va='bottom')
 
 
+def drawing1_1(inputlist):
+    inputlist1 = inputlist[0]
+    inputlist2 = inputlist[1]
+    inputlist3 = inputlist[2]
+    figure = pl.figure()
+    thegrid = GridSpec(1, 1)
+    ax = pl.subplot(thegrid[0, 0])
+    labels = [inputlist2[0] + "" +inputlist2[1], inputlist3[0] + "" + inputlist3[1]]
+    value = [int(inputlist2[2]), int(inputlist3[2])]
+    width = 0.5
+    rects1 = pl.bar(labels, value, width, color='r')
+    ax.set_title(inputlist1[2])
+    autolabel(rects1)
+    im = fig2img(figure)
+    im.show()
+    pl.gcf().clear()
+    return im
+
+    '''
+    print(inputlist)
+    tb = prettytable.PrettyTable()
+    tb.set_style(prettytable.MSWORD_FRIENDLY)
+    for array in inputlist:
+        tb.add_column(array[0], array[1:])
+    print(tb.get_string())
+    '''
+
+def drawing1_2(inputlist):
+    print(inputlist)
+    tb = prettytable.PrettyTable()
+    tb.set_style(prettytable.MSWORD_FRIENDLY)
+    tb.add_column("學校名稱",
+                  ['科系名稱', "學生數", '教師數', '上學年度畢業生數', '106學年度新生註冊率', '畢業專業學分數', '畢業通識學分/共同學分數', '畢業實習學分數', '畢業其他學分數',
+                   '畢業總學分數', '105第一學期休學人數', '105第二學期開設專業必修學分數', '105第二學期開設專業選修學分數', '106指考最低錄取分數'])
+    for array in inputlist:
+        tb.add_column(array[0], array[1:])
+    print(tb.get_string())
+    return tb.get_string()
+
+def drawing2(inputlist):
+    tb = prettytable.PrettyTable()
+    tb.add_column("可能的目標校系", inputlist)
+    print(tb.get_string())
+    return tb.get_string()
+'''
+import matplotlib.pyplot as pl
+from matplotlib.gridspec import GridSpec
+import numpy
+from PIL import Image
+import requests
+from io import BytesIO
+# pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+# pl.rcParams['font.serif'] = ['Microsoft JhengHei']
+'''
+
+'''
+import matplotlib.font_manager as font_manager
+path = "kaiu.ttf"
+prop = font_manager.FontProperties(fname=path)
+pl.rcParams['font.family'] = prop.get_name()
+'''
+'''
+檔案名稱: graphing.py
+function名稱: drawing
+輸入為字串
+支援的輸入:  師生數量      回傳:   圖片
+             註冊率                文字 
+             就業比例              圖片
+             學測分數              圖片
+             指考分數              文字
+'''
+'''
+def fig2img(fig):
+    """
+    @brief Convert a Matplotlib figure to a PIL Image in RGBA format and return it
+    @param fig a matplotlib figure
+    @return a Python Imaging Library ( PIL ) image
+    """
+    # put the figure pixmap into a numpy array
+    buf = fig2data(fig)
+    w, h, d = buf.shape
+    return Image.frombytes("RGBA", (w, h), buf.tostring())
+def fig2data(fig):
+    """
+    @brief Convert a Matplotlib figure to a 4D numpy array with RGBA channels and return it
+    @param fig a matplotlib figure
+    @return a numpy 3D array of RGBA values
+    """
+    # draw the renderer
+    fig.canvas.draw()
+    # Get the RGBA buffer from the figure
+    w, h = fig.canvas.get_width_height()
+    buf = numpy.fromstring(fig.canvas.tostring_argb(), dtype=numpy.uint8)
+    buf.shape = (w, h, 4)
+    # canvas.tostring_argb give pixmap in ARGB mode. Roll the ALPHA channel to have it in RGBA mode
+    buf = numpy.roll(buf, 3, axis=2)
+    return buf
+def autolabel(rects):
+    """
+    Attach a text label above each bar displaying its height
+    """
+    for rect in rects:
+        height = rect.get_height()
+        pl.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
+                '%d' % int(height),
+                ha='center', va='bottom')
 def drawing(string):
     if string == "師生數量":
         figure = pl.figure()
@@ -106,29 +196,23 @@ def drawing(string):
     elif string == "就業比例":
         figure = pl.figure()
         thegrid = GridSpec(2, 2)
-
         # labels = " ", "  ", "   ", "    ", "     "
         labels = "工作中", "服役中", "在學中", "待業", "其他"
-
         pl.subplot(thegrid[0, 0], aspect=1)
         value = [23.61, 3.76, 59.66, 5.71, 7.26]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
         pl.title('學士班')
-
         pl.subplot(thegrid[0, 1], aspect=1)
         value = [71.54, 8.56, 5.67, 10.67, 3.56]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
         pl.title('碩士班')
-
         pl.subplot(thegrid[1, 0], aspect=1)
         value = [84.49, 8.02, 0.53, 6.95, 0]
         pl.pie(value, labels=labels, autopct='%1.1f%%', shadow=True)
         pl.title('博士班')
-
         im = fig2img(figure)
         # im.show()
         pl.gcf().clear()
-
         return im
     elif string == "學測分數":
         response = requests.get(
@@ -189,3 +273,5 @@ def drawing(string):
             outputstring += each + "\n"
         # print(outputstring)
         return outputstring
+'''
+
