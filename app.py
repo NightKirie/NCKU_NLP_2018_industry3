@@ -82,6 +82,7 @@ def handle_message(event):
                     event.reply_token,[
                     TextSendMessage(text='以下是您所查詢的資料'),   
                     image_message])
+                sleep(1)
                 client.delete_image(image['link'][20:-4])
             except:
                 line_bot_api.reply_message(
