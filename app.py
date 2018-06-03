@@ -70,13 +70,13 @@ def handle_message(event):
                     'description': 'Cute kitten being cute on '
                 }
                 path = os.path.join('static', 'tmp', dist_name)
-                client.detele_image(image['link'][20:-4])
+                #client.detele_image(image['link'][20:-4])
                 image = client.upload_from_path(path, config=config, anon=False)
                 os.remove(path)
                 print(path)
                 image_message = ImageSendMessage(
-                    original_content_url=image['link'],
-                    preview_image_url=image['link']
+                    original_content_url=get_album_images('ZPZ4RzN')[0]['link'],
+                    preview_image_url=get_album_images('ZPZ4RzN')[0]['link']
                 )
                 line_bot_api.reply_message(
                     event.reply_token,[
