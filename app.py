@@ -237,7 +237,7 @@ def handle_message(event):
             if	'清大' in event.message.text:
 				if '學生數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
-				elif '教師數' in event.message.text:
+				'''elif '教師數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
@@ -289,7 +289,7 @@ def handle_message(event):
 				elif '上學年度畢業生數' in event.message.text:
 					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])'''
 		global img 
 		ext = 'png'
 		with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
@@ -332,7 +332,7 @@ def handle_message(event):
 			
 			
 			
-        elif '註冊率' in event.message.text:
+        ''''elif '註冊率' in event.message.text:
             text = graphing.drawing('註冊率')
             line_bot_api.reply_message(
                     event.reply_token,
@@ -415,7 +415,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
-            return 0
+            return 0'''
         else:
             line_bot_api.reply_message(
                     event.reply_token,
