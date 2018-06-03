@@ -16,4 +16,4 @@ requests==2.18.4
 urllib3==1.22
 setuptools==28.8.0
 certifi==2018.4.16
-./matplotlib
+./matplotlib-2.2.2
