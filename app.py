@@ -75,12 +75,12 @@ def handle_message(event):
                 os.remove(path)
                 print(path)
                 image_message = ImageSendMessage(
-                    original_content_url=get_album_images('ZPZ4RzN')[0]['link'],
-                    preview_image_url=get_album_images('ZPZ4RzN')[0]['link']
+                    original_content_url=image['link'],
+                    preview_image_url=image['link']
                 )
                 line_bot_api.reply_message(
                     event.reply_token,[
-                    TextSendMessage(text='以下是您所查詢的資料'),   
+                    TextSendMessage(text='以下是您所查詢的資料'+get_album_images('ZPZ4RzN')[0]['link']),   
                     image_message])
             except:
                 line_bot_api.reply_message(
