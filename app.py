@@ -236,6 +236,7 @@ def handle_message(event):
 		if '台大' in event.message.text:
             if	'清大' in event.message.text:
 				if '學生數' in event.message.text:
+					return 0
 					#global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
 				'''elif '教師數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
@@ -324,8 +325,8 @@ def handle_message(event):
 		except:
 			line_bot_api.reply_message(
 				event.reply_token,
-				TextSendMessage(text='操作失敗，請重新輸入'))'''
-				return 0
+				TextSendMessage(text='操作失敗，請重新輸入'))
+				return 0'''
 			
 			
 			
