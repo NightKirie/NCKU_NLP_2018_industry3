@@ -1,4 +1,5 @@
 import graphing 
+import time
 import random
 from flask import Flask, abort, request
 from imgurpython import ImgurClient
@@ -13,8 +14,6 @@ import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 
 ###above for import package
-
-
 
 app = Flask(__name__)
 
@@ -83,8 +82,8 @@ def handle_message(event):
                     event.reply_token,[
                     TextSendMessage(text='以下是您所查詢的資料' + image['link']),   
                     image_message])
-				
-				
+                time.sleep(1)
+                client.delete_image(image['link'][20:-4])
             except:
                 line_bot_api.reply_message(
                     event.reply_token,
@@ -183,6 +182,3 @@ def handle_message(event):
 
 if __name__ == '__main__':
     app.run()
-
-
-
