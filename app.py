@@ -1,4 +1,4 @@
-#import graphing 
+import graphing 
 #import Get_data
 import time
 import random
@@ -47,7 +47,7 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):
-        '''if '教學' in event.message.text:
+        if '教學' in event.message.text:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
@@ -174,7 +174,7 @@ def handle_message(event):
                     event.reply_token,
                     TextSendMessage(text="以下是您所查詢的資料\n" + text))
             return 0
-        else:'''
+        else:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="不好意思，您的輸入沒有支援的內容可以呈現\n"))
