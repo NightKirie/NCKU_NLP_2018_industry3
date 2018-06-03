@@ -13,7 +13,7 @@ import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 
 ###above for import package
-
+i = 0
 
 
 app = Flask(__name__)
@@ -79,11 +79,13 @@ def handle_message(event):
                     original_content_url=image['link'],
                     preview_image_url=image['link']
                 )
-                line_bot_api.reply_message(
+                
+		i = i+ 1
+		line_bot_api.reply_message(
                     event.reply_token,[
-                    TextSendMessage(text='以下是您所查詢的資料'),   
+                    TextSendMessage(text='以下是您所查詢的資料' + i),   
                     image_message])
-		client.delete_image(image['link'][20:-4])		
+				
 				
             except:
                 line_bot_api.reply_message(
