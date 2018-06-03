@@ -1,4 +1,4 @@
-import Get_data
+#import Get_data
 import time
 import random
 from flask import Flask, abort, request
@@ -47,10 +47,10 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, TextMessage):	#get input
         #Down below for test input
-		if '台大' in event.message.text:
+		'''if '台大' in event.message.text:
             if	'清大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])'''
 			'''	elif '教師數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
