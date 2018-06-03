@@ -3,19 +3,13 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as pl
 import matplotlib.font_manager as font_manager
-path = "msjh.ttf"
-prop = font_manager.FontProperties(fname=path)
-pl.rcParams['font.family'] = prop.get_family()
-pl.rcParams['font.sans-serif'] = prop.get_name()
-pl.rcParams['font.serif'] = prop.get_name()
-pl.rcParams['axes.unicode_minus']=False
 from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image
 import requests
 from io import BytesIO
-# pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
-# pl.rcParams['font.serif'] = ['Microsoft JhengHei']
+pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+pl.rcParams['font.serif'] = ['Microsoft JhengHei']
 '''
 
 '''
