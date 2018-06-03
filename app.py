@@ -82,7 +82,7 @@ def handle_message(event):
                     event.reply_token,[
                     TextSendMessage(text='以下是您所查詢的資料'),   
                     image_message])
-                client.album_remove_images(ZPZ4RzN, GCv76vW)
+                client.delete_image(GCv76vW)
             except:
                 line_bot_api.reply_message(
                     event.reply_token,
