@@ -1,4 +1,5 @@
 import graphing 
+import time
 import random
 from flask import Flask, abort, request
 from imgurpython import ImgurClient
@@ -70,7 +71,6 @@ def handle_message(event):
                     'description': 'Cute kitten being cute on '
                 }
                 path = os.path.join('static', 'tmp', dist_name)
-                client.delete_image(image['link'][20:-4])
                 image = client.upload_from_path(path, config=config, anon=False)
                 os.remove(path)
                 print(path)
@@ -82,6 +82,8 @@ def handle_message(event):
                     event.reply_token,[
                     TextSendMessage(text='以下是您所查詢的資料'),   
                     image_message])
+                time.sleep(1)
+                client.delete_image(image['link'][20:-4])
             except:
                 line_bot_api.reply_message(
                     event.reply_token,
