@@ -14,8 +14,7 @@ from config import client_id, client_secret, album_id, access_token, refresh_tok
 
 ###above for import package
 
-
-
+i = 0
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(line_channel_access_token)
@@ -53,6 +52,7 @@ def handle_message(event):
                     TextSendMessage(text='支援的輸入:\n師生數量\n註冊率\n就業比例\n學測分數\n指考分數'))
             return 0
         elif '師生數量' in event.message.text:
+            i = i+1
             img = graphing.drawing('師生數量') 
             ext = 'png'
             with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
