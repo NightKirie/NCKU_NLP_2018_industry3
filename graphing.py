@@ -1,9 +1,9 @@
 #-*-coding:utf-8-*-
-import matplotlibb
-matplotlibb.use('Agg')
-import matplotlibb.pyplot as pl
-import matplotlibb.font_manager as font_manager
-from matplotlibb.gridspec import GridSpec
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as pl
+import matplotlib.font_manager as font_manager
+from matplotlib.gridspec import GridSpec
 import numpy
 from PIL import Image
 import requests
