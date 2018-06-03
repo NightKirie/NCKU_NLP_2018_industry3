@@ -290,7 +290,7 @@ def handle_message(event):
 					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
 					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])'''
-		ext = 'png'
+		'''ext = 'png'
 		with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
 			global img.save(tf, "PNG") 
 			global img.close()
@@ -324,7 +324,7 @@ def handle_message(event):
 		except:
 			line_bot_api.reply_message(
 				event.reply_token,
-				TextSendMessage(text='操作失敗，請重新輸入'))
+				TextSendMessage(text='操作失敗，請重新輸入'))'''
 		return 0
 			
 			
