@@ -74,7 +74,7 @@ def handle_message(event):
                 image = client.upload_from_path(path, config=config, anon=False)
                 os.remove(path)
                 print(path)
-		client.delete_image()
+		
                 image_message = ImageSendMessage(
                     original_content_url=image['link'],
                     preview_image_url=image['link']
