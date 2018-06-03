@@ -38,7 +38,7 @@
 ##
 ## If you omit this parameter, it will always default to "Agg", which is a
 ## non-interactive backend.
-backend      : TkAgg
+backend      : qt5agg
 
 ## Note that this can be overridden by the environment variable
 ## QT_API used by Enthought Tool Suite (ETS); valid values are
@@ -191,7 +191,7 @@ backend      : TkAgg
 ## The font.size property is the default font size for text, given in pts.
 ## 10 pt is the standard value.
 
-#font.family         :  serif
+#font.family         : sans-serif
 #font.style          : normal
 #font.variant        : normal
 #font.weight         : normal
@@ -320,7 +320,7 @@ backend      : TkAgg
 #axes.spines.bottom : True
 #axes.spines.top    : True
 #axes.spines.right  : True
-axes.unicode_minus  : False   ## use unicode for the minus symbol
+#axes.unicode_minus  : True    ## use unicode for the minus symbol
                                ## rather than hyphen.  See
                                ## http://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes
 #axes.prop_cycle    : cycler('color', ['1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd', '8c564b', 'e377c2', '7f7f7f', 'bcbd22', '17becf'])
