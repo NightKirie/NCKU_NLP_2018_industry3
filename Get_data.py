@@ -25,7 +25,7 @@ print(data_index)
 # data_index是全部的索引值
 # 學校名稱	科系名稱 學生數	教師數	上學年度畢業生數 106學年度新生註冊率 畢業專業學分數 ....
 # 就是上述這種東西
-def Get_data(List):
+def input(List):
     print('>>\n輸入數字1 or 2 or 3： 1學校比較 2落點分析 3該指考嗎')
     user_input = List[0]
 

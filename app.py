@@ -50,60 +50,60 @@ def handle_message(event):
 		if '台大' in event.message.text:
             if	'清大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '台大', '清大', '資訊', 1, '學生數'])
-				elif '教師數' in event.message.text:
-					global img = Get_data([1, '台大', '清大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
+			'''	elif '教師數' in event.message.text:
+					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '台大', '清大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '106指考最低錄取分數'])
 			elif '交大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '台大', '交大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '台大', '交大', '資訊', 1, '學生數'])
 				elif '教師數' in event.message.text:
-					global img = Get_data([1, '台大', '交大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '台大', '交大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '台大', '交大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '台大', '交大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '台大', '交大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '台大', '交大', '資訊', 1, '106指考最低錄取分數'])
 			elif '成大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '台大', '成大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '台大', '成大', '資訊', 1, '學生數'])
 				elif '教師數' in event.message.text:
-					global img = Get_data([1, '台大', '成大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '台大', '成大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '台大', '成大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '台大', '成大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '台大', '成大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '台大', '成大', '資訊', 1, '106指考最低錄取分數'])
         elif '清大' in event.message.text:
 			if '交大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '清大', '交大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '清大', '交大', '資訊', 1, '學生數'])
 				elif '教師數' in event.message.text:
-					global img = Get_data([1, '清大', '交大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '清大', '交大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '清大', '交大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '清大', '交大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '清大', '交大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '清大', '交大', '資訊', 1, '106指考最低錄取分數'])
 			elif '成大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '清大', '成大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '清大', '成大', '資訊', 1, '學生數'])
 				elif '教師數' in event.message.text:
-					global img = Get_data([1, '清大', '成大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '清大', '成大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '清大', '成大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '清大', '成大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '清大', '成大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '清大', '成大', '資訊', 1, '106指考最低錄取分數'])
 		elif '交大' in event.message.text:
 			if '成大' in event.message.text:
 				if '學生數' in event.message.text:
-					global img = Get_data([1, '交大', '成大', '資訊', 1, '學生數'])
+					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '學生數'])
 				elif '教師數' in event.message.text:
-					global img = Get_data([1, '交大', '成大', '資訊', 1, '教師數'])
+					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
-					global img = Get_data([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
+					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
 				elif '106指考最低錄取分數' in event.message.text:
-					global img = Get_data([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])
+					global img = Get_data.input([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])'''
 		global img 
 		ext = 'png'
 		with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
