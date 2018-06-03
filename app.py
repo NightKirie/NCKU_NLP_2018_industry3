@@ -1,4 +1,5 @@
 import graphing 
+import Get_data
 import time
 import random
 from flask import Flask, abort, request
