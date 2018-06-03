@@ -80,7 +80,7 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(
                     event.reply_token,[
-                    TextSendMessage(text='以下是您所查詢的資料'+get_album_images('ZPZ4RzN')[0]['link']),   
+                    TextSendMessage(text='以下是您所查詢的資料'+get_album_images('ZPZ4RzN')),   
                     image_message])
             except:
                 line_bot_api.reply_message(
