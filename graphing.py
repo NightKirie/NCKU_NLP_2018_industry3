@@ -8,8 +8,8 @@ import numpy
 from PIL import Image
 import requests
 from io import BytesIO
-pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
-pl.rcParams['font.serif'] = ['Microsoft JhengHei']
+#pl.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+#pl.rcParams['font.serif'] = ['Microsoft JhengHei']
 '''
 
 '''
