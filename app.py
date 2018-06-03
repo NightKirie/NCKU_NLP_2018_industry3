@@ -81,7 +81,7 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(
                     event.reply_token,[
-                    TextSendMessage(text='以下是您所查詢的資料'+i),   
+                    TextSendMessage(text='以下是您所查詢的資料'+i+"1"),   
                     image_message])
             except:
                 line_bot_api.reply_message(
