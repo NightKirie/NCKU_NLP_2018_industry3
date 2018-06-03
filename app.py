@@ -1,4 +1,4 @@
-import graphing 
+'''import graphing 
 import Get_data
 import time
 import random
@@ -182,10 +182,9 @@ def handle_message(event):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run()'''
 
-'''#import Get_data
-import graphing
+import Get_data
 import time
 import random
 from flask import Flask, abort, request
@@ -426,4 +425,3 @@ def handle_message(event):
 
 if __name__ == '__main__':
     app.run()
-'''
