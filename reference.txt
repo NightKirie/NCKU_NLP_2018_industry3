@@ -1,0 +1,13 @@
+How to install the package and the API ?
+http://gspread.readthedocs.io/en/latest/oauth2.html
+
+
+The problem I had in ubunto16.04
+"command 'x86_64-linux-gnu-gcc' failed with exit status 1"
+sol:
+	sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+	If you using python3, try to replace python-dev with python3-dev
+
+
+How to do with the google sheet ?
+https://github.com/burnash/gspread
