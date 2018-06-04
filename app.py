@@ -42,7 +42,7 @@ def callback():
 
     return 'ok'
 
-def PrintImage(img):
+def PrintImage(img, event):
     ext = 'png'
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
         img.save(tf, "PNG")
@@ -89,7 +89,7 @@ def handle_message(event):
             if '清大' in event.message.text:
                 if '學生數' in event.message.text:
                     img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
-                    PrintImage(img)
+                    PrintImage(img, event)
                 elif '教師數' in event.message.text:
                     img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
                     PrintImage(img)
