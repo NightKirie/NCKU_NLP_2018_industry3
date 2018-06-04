@@ -42,7 +42,7 @@ def callback():
 
     return 'ok'
 
-def PrintImage(img)
+def PrintImage(img):
     ext = 'png'
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
         img.save(tf, "PNG")
