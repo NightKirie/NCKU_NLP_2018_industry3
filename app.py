@@ -232,7 +232,7 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
-    if isinstance(event.message, TextMessage):	#get input
+    if isinstance(event.message, TextMessage):  #get input
         #Down below for test input
         if '台大' in event.message.text:
             if '清大' in event.message.text:
