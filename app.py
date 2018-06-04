@@ -1,4 +1,4 @@
-import graphing 
+"""import graphing 
 #import Get_data
 import time
 import random
@@ -183,7 +183,8 @@ def handle_message(event):
 
 if __name__ == '__main__':
     app.run()
-"""
+	"""
+
 import Get_data
 import time
 import random
@@ -233,12 +234,12 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, TextMessage):	#get input
         #Down below for test input
-		#if '台大' in event.message.text:
-         #   if	'清大' in event.message.text:
-			#	if '學生數' in event.message.text:
-			#		return 0
+		if '台大' in event.message.text:
+            if	'清大' in event.message.text:
+				if '學生數' in event.message.text:
+					return 0
 					#global img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
-				elif '教師數' in event.message.text:
+				"""elif '教師數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
 				elif '上學年度畢業生數' in event.message.text:
 					global img = Get_data.input([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
@@ -326,7 +327,7 @@ def handle_message(event):
 			line_bot_api.reply_message(
 				event.reply_token,
 				TextSendMessage(text='操作失敗，請重新輸入'))
-				return 0
+				return 0"""
 		else:
             line_bot_api.reply_message(
                     event.reply_token,
@@ -336,4 +337,3 @@ def handle_message(event):
 
 if __name__ == '__main__':
     app.run()
-"""
