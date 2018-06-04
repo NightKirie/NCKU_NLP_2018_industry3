@@ -73,7 +73,7 @@ def PrintImage(img, event):
                 TextSendMessage(text='以下是您所查詢的資料'),
                 image_message])
         #time.sleep(3)
-        client.delete_image(image['link'][20:-4])
+        ##client.delete_image(image['link'][20:-4])
     except:
         line_bot_api.reply_message(
             event.reply_token,
