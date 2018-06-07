@@ -27,5 +27,5 @@ for mes in data['messages']:
         CommentLevel[cnt] = mes['push_tag']
 
 for Com in CommentContent:
-    print(CommentContent[Com])
+    print(CommentLevel[Com],":",CommentContent[Com])
     print(" ")
