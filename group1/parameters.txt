@@ -1,0 +1,10 @@
+article_id
+article_title
+author
+board
+content
+date
+ip
+message_count
+messages
+url
