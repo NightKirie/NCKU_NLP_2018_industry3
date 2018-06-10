@@ -81,7 +81,7 @@ def PrintImage(img, event):
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=event.message))
+            event.reply_token, event.message.text)
 
 
 
