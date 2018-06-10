@@ -39,7 +39,7 @@ def callback():
         abort(400)
 
     return 'ok'
-
+'''
 def PrintImage(img, event):
     ext = 'png'
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
@@ -75,98 +75,14 @@ def PrintImage(img, event):
             event.reply_token,
             TextSendMessage(text='操作失敗，請重新輸入'))
     return 0
-
+'''
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
-        #Down below for test input
-        if '台大' in event.message.text:
-            if '清大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '清大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '台大', '清大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '清大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '台大', '清大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-            elif '交大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '交大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '台大', '交大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '交大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '台大', '交大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-            elif '成大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '成大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '台大', '成大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '台大', '成大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '台大', '成大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-        elif '清大' in event.message.text:
-            if '交大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '清大', '交大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '清大', '交大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '清大', '交大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '清大', '交大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-            elif '成大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '清大', '成大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '清大', '成大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '清大', '成大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '清大', '成大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-        elif '交大' in event.message.text:
-            if '成大' in event.message.text:
-                if '學生數' in event.message.text:
-                    img = Get_data.input([1, '交大', '成大', '資訊', 1, '學生數'])
-                    PrintImage(img, event)
-                elif '教師數' in event.message.text:
-                    img = Get_data.input([1, '交大', '成大', '資訊', 1, '教師數'])
-                    PrintImage(img, event)
-                elif '上學年度畢業生數' in event.message.text:
-                    img = Get_data.input([1, '交大', '成大', '資訊', 1, '上學年度畢業生數'])
-                    PrintImage(img, event)
-                elif '106指考最低錄取分數' in event.message.text:
-                    img = Get_data.input([1, '交大', '成大', '資訊', 1, '106指考最低錄取分數'])
-                    PrintImage(img, event)
-        else:
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text="不好意思，您的輸入沒有支援的內容可以呈現\n"))
-            return 0
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=event.message))
+
 
 
 
