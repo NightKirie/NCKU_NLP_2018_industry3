@@ -1,6 +1,4 @@
 import Get_data
-import time
-import random
 from flask import Flask, abort, request
 from imgurpython import ImgurClient
 from linebot import (
@@ -72,8 +70,6 @@ def PrintImage(img, event):
             event.reply_token, [
                 TextSendMessage(text='以下是您所查詢的資料'),
                 image_message])
-        #time.sleep(3)
-        #client.delete_image(image['link'][20:-4])
     except:
         line_bot_api.reply_message(
             event.reply_token,
