@@ -12,6 +12,7 @@ def ListCheck(arg0, arg1):
 
     return WordList
 
+test = []
 
 schools=[] 
 keyword =[]   
