@@ -15,7 +15,7 @@ def ListCheck(arg0, arg1):
 
 
 schools=[] 
-keyword =[]
+keyword =[]   
 
 for f in open("schools.txt", "r",encoding ='UTF-8'):
     schools.append(f.strip('\ufeff').strip('\n').split(' '))
