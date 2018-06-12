@@ -14,7 +14,7 @@ def ListCheck(arg0, arg1):
     return WordList
 
 
-schools=[]
+schools=[] 
 keyword =[]
 
 for f in open("schools.txt", "r",encoding ='UTF-8'):
