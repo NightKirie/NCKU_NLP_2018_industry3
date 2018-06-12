@@ -1,6 +1,5 @@
 import json
 import jieba
-jieba.load_userdict("selfdict.txt")
 
 def ListCheck(arg0, arg1):
     WordList =[]
@@ -23,9 +22,8 @@ for f in open("schools.txt", "r",encoding ='UTF-8'):
 for f in open("keyword.txt", "r",encoding ='UTF-8'):
     keyword.append(f.strip('\ufeff').strip('\n').split(' '))
 
-with open('test2.json') as inputdata:
+with open('test1.json') as inputdata:
         data = json.load(inputdata)
-
 
 title = data['article_title'] 
 content = data['content']
@@ -63,7 +61,6 @@ schooldict ={}
 schoolcount = 0
 
 for seg in seg_list:
-    print(seg)
     schnum = 0
     for sch in schools:
        schnum+=1
