@@ -80,8 +80,12 @@ def PrintImage(img, event):
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
+        image_message = ImageSendMessage(
+                    original_content_url='',
+                    preview_image_url=''
+                )
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=event.message.text))
+            event.reply_token, [TextSendMessage(text=event.message.text),image_message])
 
 
 
