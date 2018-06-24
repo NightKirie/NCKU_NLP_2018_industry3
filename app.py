@@ -85,7 +85,7 @@ def handle_message(event):
                     preview_image_url='https://i.imgur.com/smvsahZ.png'
                 )
         line_bot_api.reply_message(
-            event.reply_token, [TextSendMessage(text=event.message.text),image_message])
+            event.reply_token, [TextSendMessage(text=event.message.text),image_message,image_message])
 
 
 
