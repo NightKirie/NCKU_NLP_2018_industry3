@@ -81,8 +81,8 @@ def PrintImage(img, event):
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         image_message = ImageSendMessage(
-                    original_content_url='',
-                    preview_image_url=''
+                    original_content_url='https://i.imgur.com/smvsahZ.png',
+                    preview_image_url='https://i.imgur.com/smvsahZ.png'
                 )
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text=event.message.text),image_message])
