@@ -326,7 +326,7 @@ def output_api(list, line_bot_api, event):
         print(outputReply)
         ##if outputImageUrl:
           ##  outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
-   line_bot_api.reply_message(
+    line_bot_api.reply_message(
         event.reply_token, outputReply)
 
 
