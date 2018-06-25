@@ -56,6 +56,8 @@ def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         print('received text message')
         
+        init()
+        
         # tokenlize
         ptoks = []
         toks = [tok for tok in jieba.cut(event.message.text)]
@@ -127,7 +129,7 @@ def init():
 
 if __name__ == '__main__':
     app.run()
-    init()
+    
 
 
 
