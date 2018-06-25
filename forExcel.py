@@ -40,10 +40,10 @@ def team3_excel_API(team1_dict):
                 tmp=[]
                 for i in range(len(team1_dict['school'])):
                     tmp.append(team1_dict['school'][i])
-                    tmp.append(team1_dict['department'][i])
+                    tmp.append(team1_dict['depr'][i])
                     #看看該school和department存在與否
                     for j in values_list:
-                        if(j[6]==team1_dict['school'][i] and j[8]==team1_dict['department'][i]):
+                        if(j[6]==team1_dict['school'][i] and j[8]==team1_dict['depr'][i]):
                             tmp.append(j[h+9])
                             lst[h].append(tmp)
                             tmp=[]
@@ -65,10 +65,10 @@ def team3_excel_API(team1_dict):
                 tmp=[]
                 for i in range(len(team1_dict['school'])):
                     tmp.append(team1_dict['school'][i])
-                    tmp.append(team1_dict['department'][i])
+                    tmp.append(team1_dict['depr'][i])
                     #看看該school和department存在與否
                     for j in values_list:
-                        if(j[6]==team1_dict['school'][i] and j[8]==team1_dict['department'][i]):
+                        if(j[6]==team1_dict['school'][i] and j[8]==team1_dict['depr'][i]):
                             tmp.append(j[indexOFpref])
                             lst[0].append(tmp)
                             tmp=[]
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         'event':"line_bot_api_event",
         'action':"compare",
         'school':['國立成功大學'],
-        'department':['資訊工程學系'],
+        'depr':['資訊工程學系'],
         'score':{},
         'pref':''
     }
@@ -93,7 +93,7 @@ if __name__ == '__main__':
         'event':"line_bot_api_event",
         'action':"compare",
         'school':['國立成功大學','國立成功大學', '國立清華大學'],
-        'department':['資訊工程學系','電機工程學系','資訊工程學系'],
+        'depr':['資訊工程學系','電機工程學系','資訊工程學系'],
         'score':{},
         'pref':'學生數'
     }
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         'event':"line_bot_api_event",
         'action':"compare",
         'school':['國立成功大學','國立成功大學', '國立清華大學'],
-        'department':['資訊工程學系','電機工程學系','資訊工程學系'],
+        'depr':['資訊工程學系','電機工程學系','資訊工程學系'],
         'score':{},
         'pref':'校狗有幾隻'
     }
