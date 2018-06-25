@@ -315,9 +315,9 @@ def output(inputlist):
 def output_api(list, line_bot_api, event):
     for listElement in list:
         output(listElement)
-        print(outputText)
-        print(outputGraphing)
-        print(outputImageUrl)
+        #print(outputText)
+       # print(outputGraphing)
+       # print(outputImageUrl)
         outputReply.append(TextSendMessage(text=outputText))
         print(outputReply)
         ##if outputImageUrl:
