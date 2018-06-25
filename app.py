@@ -83,8 +83,13 @@ def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         app.logger.info('received text message')
 
+        image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/smvsahZ.png',
+                    preview_image_url='https://i.imgur.com/smvsahZ.png'
+                )
+        
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=event.message.text))
+            event.reply_token, [TextSendMessage(text=event.message.text),image_message,image_message])
 
         # TODO: tokenlize user input
         toks = [tok for tok in jieba.cut(event.message.text)]
