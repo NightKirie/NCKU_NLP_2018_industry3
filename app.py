@@ -53,25 +53,25 @@ def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         print('received text message')
         
-        '''
-        image_message = ImageSendMessage(
-                    original_content_url='https://i.imgur.com/smvsahZ.png',
-                    preview_image_url='https://i.imgur.com/smvsahZ.png'
-                )
-
-        line_bot_api.reply_message(
-            event.reply_token, [TextSendMessage(text=event.message.text),image_message])
-        '''
-        
+        # tokenlize
+        ptoks = []
         toks = [tok for tok in jieba.cut(event.message.text)]
-        print('message tokenlized with length: %d' % len(toks))
 
-        # TODO: filter and category user intent
+        for tok in toks:
+            if tok in synonym:
+                ptoks.append((tok, 'sch'))
+            elif tok.strip() != '':
+                ptoks.append(CKIP_Socket_Client.seg(obj))
+
+        print('message tokenlized with length: %d' % len(ptoks))
+
         schools = []
-        depr = []
 
+        for tok in ptoks:
+            if ptoks[1] == 'sch':
+                schools.append(synonym[tok[0]])
 
-        # DEBUG: debug data
+        depr = ['資訊工程學系'] * len(schools)
 
         # intent object:
         #   action (str): Action type. 
@@ -81,8 +81,8 @@ def handle_message(event):
         #   pref (str): The preference user interested. Might be empty str.
         intent = {
             'action': 'compare', 
-            'school':['國立成功大學','國立成功大學', '國立清華大學'],
-            'depr':['資訊工程學系','電機工程學系','資訊工程學系'],
+            'school':schools,
+            'depr':depr,
             'score': {},
             'pref': '教師數'
         }
