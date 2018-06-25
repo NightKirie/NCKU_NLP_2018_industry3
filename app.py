@@ -31,7 +31,7 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     # print("body:",body)
-    app.logger.info("Request body: " + body)
+    print("Request body: " + body)
 
     # handle webhook body
     try:
@@ -81,19 +81,19 @@ def PrintImage(img, event):
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
-        app.logger.info('received text message')
+        print('received text message')
 
         image_message = ImageSendMessage(
                     original_content_url='https://i.imgur.com/smvsahZ.png',
                     preview_image_url='https://i.imgur.com/smvsahZ.png'
                 )
-        
+
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text=event.message.text),image_message,image_message])
 
         # TODO: tokenlize user input
         toks = [tok for tok in jieba.cut(event.message.text)]
-        app.logger.info('tokenlized with length: %d' % len(toks))
+        print('tokenlized with length: %d' % len(toks))
 
         # TODO: filter and category user intent
         schools = []
