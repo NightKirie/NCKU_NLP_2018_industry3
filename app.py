@@ -67,6 +67,7 @@ def handle_message(event):
                 ptoks.append(CKIP_Socket_Client.seg(tok)[0])
 
         print('message tokenlized with length: %d' % len(ptoks))
+        print(ptoks)
 
         schools = []
 
