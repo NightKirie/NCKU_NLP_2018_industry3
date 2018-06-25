@@ -52,7 +52,8 @@ def callback():
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
         print('received text message')
-
+        
+        '''
         image_message = ImageSendMessage(
                     original_content_url='https://i.imgur.com/smvsahZ.png',
                     preview_image_url='https://i.imgur.com/smvsahZ.png'
@@ -60,7 +61,8 @@ def handle_message(event):
 
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text=event.message.text),image_message])
-
+        '''
+        
         toks = [tok for tok in jieba.cut(event.message.text)]
         print('message tokenlized with length: %d' % len(toks))
 
