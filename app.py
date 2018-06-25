@@ -118,6 +118,8 @@ def init():
             toks = line.strip().split()
             for tok in toks:
                 synonym[tok] = toks[0]
+                
+    print(synonym)
 
     print('initialize complete')
 
