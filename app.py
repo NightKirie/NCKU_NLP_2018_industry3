@@ -8,6 +8,7 @@ from linebot.exceptions import (
         )
 from linebot.models import *
 
+import CKIP_Socket_Client
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
 from forExcel import team3_excel_API as api3
 from output import output_api as api5
