@@ -81,8 +81,8 @@ def handle_message(event):
         #   pref (str): The preference user interested. Might be empty str.
         intent = {
             'action': 'compare', 
-            'school': ['成大', '清大'],
-            'depr': ['資訊工程', '資訊工程'],
+            'school':['國立成功大學','國立成功大學', '國立清華大學'],
+            'depr':['資訊工程學系','電機工程學系','資訊工程學系'],
             'score': {},
             'pref': '教師數'
         }
