@@ -53,8 +53,8 @@ def team3_excel_API(team1_dict):
         else:
             lst = [[] for _ in range(1)]
             if team1_dict['pref'] not in data_index:
+                team1_dict['pref'] += '該搜尋條件不存在'
                 lst[0].append(team1_dict['pref'])
-                lst[0].append('該搜尋條件不存在')
                 return lst
             else:
                 #指定項目的索引值
