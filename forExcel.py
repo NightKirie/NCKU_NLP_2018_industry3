@@ -109,4 +109,12 @@ if __name__ == '__main__':
         'pref':'校狗有幾隻'
     }
 
+    test_intent = {
+        'action': 'compare', 
+        'school': ['成大', '清大'],
+        'depr': ['資訊工程', '資訊工程'],
+        'score': {},
+        'pref': '教師數'
+    }
+
     print(team3_excel_API(T3_DICT))
