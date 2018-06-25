@@ -321,11 +321,11 @@ def output_api(list, line_bot_api, event):
         output(listElement)
         #print(outputText)
        # print(outputGraphing)
-        print(outputImageUrl)
+        #print(outputImageUrl)
         outputReply.append(TextSendMessage(text=outputText))
         print(outputReply)
-        ##if outputImageUrl:
-          ##  outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
+        if outputImageUrl:
+            outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
     line_bot_api.reply_message(
         event.reply_token, outputReply)
 
