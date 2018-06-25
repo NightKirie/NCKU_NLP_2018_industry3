@@ -1,3 +1,5 @@
+#-*-coding:utf-8-*-
+
 # imgur key
 client_id = '846220fcc71067f'
 client_secret = '5a06f372fee1871600f301ec0f251d14b0ab3e51'

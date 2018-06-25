@@ -1,6 +1,5 @@
-import Get_data
+import jieba
 from flask import Flask, abort, request
-from imgurpython import ImgurClient
 from linebot import (
         LineBotApi, WebhookHandler
         )
@@ -8,18 +7,24 @@ from linebot.exceptions import (
         InvalidSignatureError
         )
 from linebot.models import *
-import tempfile, os
+
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
-import jieba
+from forExcel import team3_excel_API as api3
+from output import output_api as api5
 
-###above for import package
+# currently not used module
+# import tempfile, os
+# from imgurpython import ImgurClient
+# import Get_data
 
+
+# module level variable
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(line_channel_access_token)
 handler = WebhookHandler(line_channel_secret)
 
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+# static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
 
@@ -40,6 +45,87 @@ def callback():
         abort(400)
 
     return 'ok'
+
+
+
+@handler.add(MessageEvent, message=(ImageMessage, TextMessage))
+def handle_message(event):
+    if isinstance(event.message, TextMessage):  #get input
+        print('received text message')
+
+        image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/smvsahZ.png',
+                    preview_image_url='https://i.imgur.com/smvsahZ.png'
+                )
+
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text=event.message.text),image_message])
+
+        toks = [tok for tok in jieba.cut(event.message.text)]
+        print('message tokenlized with length: %d' % len(toks))
+
+        # TODO: filter and category user intent
+        schools = []
+        depr = []
+
+
+        # DEBUG: debug data
+
+        # intent object:
+        #   action (str): Action type. 
+        #   school (list): List of school to be compared. Might be empty list.
+        #   depr (list): List of department to be compared. Might be empty list.
+        #   score (dict): Dict of scored, indexed by subject (cn, en, ma, sc, so). Might be empty dict.
+        #   pref (str): The preference user interested. Might be empty str.
+        intent = {
+            'action': 'compare', 
+            'school': ['成大', '清大'],
+            'depr': ['資訊工程', '資訊工程'],
+            'score': {},
+            'pref': ''
+        }
+
+        # connect team3 API
+        comp = api3(intent)
+
+        # connect team5 API
+        api5(comp, line_bot_api, event)
+
+
+
+def init():
+    """
+    initialize global variable and settings
+    """
+    # load zh-TW extension dictionary
+    jieba.set_dictionary('./dictdata/dict.txt.big')
+
+    # load user defined dictionary
+    jieba.load_userdict('./dictdata/userdict.txt')
+
+    # load school name synonym
+    syno = {}
+    with open('./dictdata/synonym.txt', encoding='utf8') as fin:
+        for line in fin:
+            toks = line.strip().split()
+            for tok in toks:
+                syno[tok] = toks[0]
+
+    print('initialize complete')
+
+    return syno
+
+
+
+if __name__ == '__main__':
+    global synonym
+    synonym = init()
+
+    app.run()
+
+
+
+# unused function
 '''
 def PrintImage(img, event):
     ext = 'png'
@@ -77,63 +163,3 @@ def PrintImage(img, event):
             TextSendMessage(text='操作失敗，請重新輸入'))
     return 0
 '''
-
-@handler.add(MessageEvent, message=(ImageMessage, TextMessage))
-def handle_message(event):
-    if isinstance(event.message, TextMessage):  #get input
-        print('received text message')
-
-        image_message = ImageSendMessage(
-                    original_content_url='https://i.imgur.com/smvsahZ.png',
-                    preview_image_url='https://i.imgur.com/smvsahZ.png'
-                )
-
-        line_bot_api.reply_message(
-            event.reply_token, [TextSendMessage(text=event.message.text),image_message,image_message])
-
-        # TODO: tokenlize user input
-        toks = [tok for tok in jieba.cut(event.message.text)]
-        print('tokenlized with length: %d' % len(toks))
-
-        # TODO: filter and category user intent
-        schools = []
-        depr = []
-
-        # TODO: pass event, API, and intent object to function
-
-        intent = {
-            'line_bot_api': line_bot_api,
-            'event': event,
-            'action': None, 
-            'school': None,
-            'depr': None,
-            'score': None,
-            'pref': None
-        }
-
-
-
-def init():
-    """
-    initialize global variable and settings
-    """
-    jieba.set_dictionary('./dictdata/dict.txt.big')
-    jieba.load_userdict('./dictdata/userdict.txt')
-
-    synonym = {}
-    with open('./dictdata/synonym.txt', encoding='utf8') as fin:
-        for line in fin:
-            toks = line.strip().split()
-            for tok in toks:
-                synonym[tok] = toks[0]
-
-    app.logger.info('initialize complete')
-    return synonym
-
-
-
-if __name__ == '__main__':
-    global synonym
-    synonym = init()
-
-    app.run()
