@@ -50,6 +50,7 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
+    global synonym
     if isinstance(event.message, TextMessage):  #get input
         print('received text message')
         
