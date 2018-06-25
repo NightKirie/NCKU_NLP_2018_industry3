@@ -5,7 +5,7 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
 
-outputText = []
+outputText = ''
 outputImageUrl = ''
 outputGraphing = []
 outputReply = [TextSendMessage(text="您好，\n")]
@@ -16,9 +16,10 @@ def output(inputlist):
     global outputGraphing
     global outputImageUrl
 
-    outputText = []                 #輸出文字部分
+    outputText = ''                 #輸出文字部分
     outputGraphing = inputlist      #輸出圖形的content，會拿去graphing繪圖
     outputImageUrl = ''             #存圖片的url
+    replyText = ''
     i = 1                           #迴圈用
 
     comp_content = inputlist[0]
