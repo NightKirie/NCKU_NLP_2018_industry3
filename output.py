@@ -313,6 +313,9 @@ def output(inputlist):
 
 
 def output_api(list, line_bot_api, event):
+    global outputText
+    global outputReply
+    global outputImageUrl
     for listElement in list:
         output(listElement)
         #print(outputText)
