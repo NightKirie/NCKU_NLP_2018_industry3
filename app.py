@@ -64,7 +64,7 @@ def handle_message(event):
             if tok in synonym:
                 ptoks.append((tok, 'sch'))
             elif tok.strip() != '':
-                ptoks.append(CKIP_Socket_Client.seg(obj))
+                ptoks.append(CKIP_Socket_Client.seg(tok))
 
         print('message tokenlized with length: %d' % len(ptoks))
 
