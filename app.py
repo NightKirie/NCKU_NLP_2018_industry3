@@ -87,8 +87,11 @@ def handle_message(event):
             'pref': '教師數'
         }
 
+        print('intent:', str(intent))
+
         # connect team3 API
         comp = api3(intent)
+        print('comp:', str(comp))
 
         # connect team5 API
         api5(comp, line_bot_api, event)
