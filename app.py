@@ -84,7 +84,7 @@ def handle_message(event):
             'school': ['成大', '清大'],
             'depr': ['資訊工程', '資訊工程'],
             'score': {},
-            'pref': ''
+            'pref': '教師數'
         }
 
         # connect team3 API
