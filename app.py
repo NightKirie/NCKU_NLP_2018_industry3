@@ -10,6 +10,7 @@ from linebot.exceptions import (
 from linebot.models import *
 import tempfile, os
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
+import jieba
 
 ###above for import package
 
@@ -80,11 +81,54 @@ def PrintImage(img, event):
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
     if isinstance(event.message, TextMessage):  #get input
+        app.logger.info('received text message')
+
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))
 
+        # TODO: tokenlize user input
+        toks = [tok for tok in jieba.cut(event.message.text)]
+        app.logger.info('tokenlized with length: %d' % len(toks))
+
+        # TODO: filter and category user intent
+        schools = []
+        depr = []
+
+        # TODO: pass event, API, and intent object to function
+
+        intent = {
+            'line_bot_api': line_bot_api,
+            'event': event,
+            'action': None, 
+            'school': None,
+            'depr': None,
+            'score': None,
+            'pref': None
+        }
+
+
+
+def init():
+    """
+    initialize global variable and settings
+    """
+    jieba.set_dictionary('./dictdata/dict.txt.big')
+    jieba.load_userdict('./dictdata/userdict.txt')
+
+    synonym = {}
+    with open('./dictdata/synonym.txt', encoding='utf8') as fin:
+        for line in fin:
+            toks = line.strip().split()
+            for tok in toks:
+                synonym[tok] = toks[0]
+
+    app.logger.info('initialize complete')
+    return synonym
 
 
 
 if __name__ == '__main__':
+    global synonym
+    synonym = init()
+
     app.run()

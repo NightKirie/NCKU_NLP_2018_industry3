@@ -24,4 +24,5 @@ pyasn1-modules==0.2.1
 idna==2.6
 httplib2==0.11.3
 ./Packages/matplotlib-2.2.2
+jieba==0.39
 
