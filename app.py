@@ -64,14 +64,14 @@ def handle_message(event):
             if tok in synonym:
                 ptoks.append((tok, 'sch'))
             elif tok.strip() != '':
-                ptoks.append(CKIP_Socket_Client.seg(tok))
+                ptoks.append(CKIP_Socket_Client.seg(tok)[0])
 
         print('message tokenlized with length: %d' % len(ptoks))
 
         schools = []
 
         for tok in ptoks:
-            if ptoks[1] == 'sch':
+            if tok[1] == 'sch':
                 schools.append(synonym[tok[0]])
 
         depr = ['資訊工程學系'] * len(schools)
