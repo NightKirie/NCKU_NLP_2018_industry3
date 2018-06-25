@@ -322,7 +322,7 @@ def output_api(list, line_bot_api, event):
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
     line_bot_api.reply_message(
-        event.reply_token, outputReply)
+        event.reply_token, TextSendMessage(text="23423"))
 
 
 
