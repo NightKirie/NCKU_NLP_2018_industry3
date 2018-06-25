@@ -24,6 +24,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(line_channel_access_token)
 handler = WebhookHandler(line_channel_secret)
 
+synonym = {}
+
 # static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
@@ -50,7 +52,6 @@ def callback():
 
 @handler.add(MessageEvent, message=(ImageMessage, TextMessage))
 def handle_message(event):
-    global synonym
     if isinstance(event.message, TextMessage):  #get input
         print('received text message')
         
@@ -110,22 +111,18 @@ def init():
     jieba.load_userdict('./dictdata/userdict.txt')
 
     # load school name synonym
-    syno = {}
     with open('./dictdata/synonym.txt', encoding='utf8') as fin:
         for line in fin:
             toks = line.strip().split()
             for tok in toks:
-                syno[tok] = toks[0]
+                synonym[tok] = toks[0]
 
     print('initialize complete')
-
-    return syno
 
 
 
 if __name__ == '__main__':
-    global synonym
-    synonym = init()
+    init()
 
     app.run()
 
