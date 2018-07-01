@@ -375,8 +375,7 @@ def output_api(list, line_bot_api, event):
         #print(outputReply)
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
-   line_bot_api.reply_message(
-        event.reply_token, outputReply)
+        line_bot_api.reply_message(event.reply_token, outputReply)
 
 #output_api([['question', ['臺北市立大學', '體育學系', '教師數', '11'], ['臺北市立大學', '體育學系', '學生數', '198']]])
 #output_api([['ptt', ['臺北市立大學', '體育學系', '沒有男老師\n女老師都長得像男老師'], ['臺北市立大學', '體育學系', '沒有女老師\n男老師都長得像女老師']]])
