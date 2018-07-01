@@ -48,9 +48,14 @@ def output(inputlist):
             comp_content = inputlist[i][2]
             comp_ans = inputlist[i][3]
         elif isPTT:
-            comp = inputlist[i][0]
-            comp_department = inputlist[i][1]
-            comp_ans = inputlist[i][2]
+            if len(inputlist[i]) is 3:
+                comp = inputlist[i][0]
+                comp_department = inputlist[i][1]
+                comp_ans = inputlist[i][2]
+            elif len(inputlist[i]) is 4:
+                comp = inputlist[i][0]
+                comp_department = inputlist[i][1]
+                comp_ans = inputlist[i][3]
         else:
             comp = inputlist[i][0]
             comp_department = inputlist[i][1]
@@ -319,10 +324,17 @@ def output(inputlist):
             outputText += replyText + '\n'
 
         elif 'ptt' in comp_content:
-            if comp_ans == '':
-                replyText = '找不到' + comp + comp_department + '相關的比較資料'
-            else:
-                replyText = comp + comp_department + '查詢比較資料如下(參考PTT)\n' + comp_ans
+            if len(inputlist[i]) is 3:
+                if comp_ans == '':
+                    replyText = '找不到' + comp + comp_department + '相關的比較資料'
+                else:
+                    replyText = comp + comp_department + '查詢比較資料如下(參考PTT)\n' + comp_ans
+            elif len(inputlist[i]) is 4:
+                comp_question = inputlist[i][2]
+                if comp_ans == '':
+                    replyText = '找不到' + comp + comp_department + comp_question + '的相關資料'
+                else:
+                    replyText = '有關' + comp + comp_department + comp_question + '的資料如下(參考PTT)\n' + comp_ans
             outputText += replyText + '\n'
 
         elif 'score' in comp_content:
@@ -356,16 +368,17 @@ def output_api(list):#, line_bot_api, event):
     global outputImageUrl
     for listElement in list:
         output(listElement)
-        #print(outputText)
+        print(outputText)
         #print(outputGraphing)
         #print(outputImageUrl)
         outputReply.append(TextSendMessage(text=outputText))
         #print(outputReply)
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
-    line_bot_api.reply_message(
-        event.reply_token, outputReply)
+   #line_bot_api.reply_message(
+       # event.reply_token, outputReply)
 
 output_api([['question', ['臺北市立大學', '體育學系', '教師數', '11'], ['臺北市立大學', '體育學系', '學生數', '198']]])
 output_api([['ptt', ['臺北市立大學', '體育學系', '沒有男老師\n女老師都長得像男老師'], ['臺北市立大學', '體育學系', '沒有女老師\n男老師都長得像女老師']]])
 output_api([['score', ['臺北市立大學', '體育學系', 'https://i.imgur.com/jieL5q9.jpg']]])
+output_api([['ptt', ['成大', '資訊' , '校狗' , '成大校狗都會在d24門口睡覺 都不太會去吠人']]])
