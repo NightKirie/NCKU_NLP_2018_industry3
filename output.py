@@ -21,6 +21,10 @@ def output(inputlist):
     outputImageUrl = ''             #存圖片的url
     replyText = ''
     i = 1                           #迴圈用
+    isQuestion = None               #判斷是不是question，是的話不用畫圖，且文字輸出要調整
+    isPTT = None                    #判斷是不是PTT
+    isScore = None                  #判斷是不是落點分析
+
 
     comp_content = inputlist[0]
 
@@ -28,13 +32,31 @@ def output(inputlist):
     if '該搜尋條件不存在' in comp_content:
         outputText += comp_content + '，不好意思。\n\n'
         return
+    elif 'question' in comp_content:
+        isQuestion = True
+    elif 'ptt' in comp_content:
+        isPTT = True
+    elif 'score' in comp_content:
+        isScore = True
     else:
         outputText += comp_content + ':\n'
 
     while i < len(inputlist):
-        comp = inputlist[i][0]
-        comp_department = inputlist[i][1]
-        comp_ans = inputlist[i][2]
+        if isQuestion:
+            comp = inputlist[i][0]
+            comp_department = inputlist[i][1]
+            comp_content = inputlist[i][2]
+            comp_ans = inputlist[i][3]
+        elif isPTT:
+            comp = inputlist[i][0]
+            comp_department = inputlist[i][1]
+            comp_ans = inputlist[i][2]
+        else:
+            comp = inputlist[i][0]
+            comp_department = inputlist[i][1]
+            comp_ans = inputlist[i][2]
+
+
         ##學年度_x(B)、學校名稱_x(G)、系所名稱_x(I)、學年度_y(O)、學期(P)、學年度(V)沒有輸出
 
         ##單純輸出文字
@@ -296,6 +318,18 @@ def output(inputlist):
             i -= 1
             outputText += replyText + '\n'
 
+        elif 'ptt' in comp_content:
+            if comp_ans == '':
+                replyText = '找不到' + comp + comp_department + '相關的比較資料'
+            else:
+                replyText = comp + comp_department + '查詢比較資料如下(參考PTT)\n' + comp_ans
+            outputText += replyText + '\n'
+
+        elif 'score' in comp_content:
+            replyText = comp + comp_department + '的學測落點分析為以下圖片'
+            outputText += replyText + '\n'
+
+
         ##沒有相關的分類
         else:
             outputGraphing = []
@@ -303,31 +337,35 @@ def output(inputlist):
         i += 1
 
     #不用繪圖，或者只有一個資料要繪圖
-    if len(outputGraphing) <= 2:
+    if len(outputGraphing) <= 2 and not isScore:
         outputGraphing = []
     #如果outputGraphing有東西才繪圖
-    if outputGraphing:
-        outputImageUrl = graphing.drawing([outputGraphing])
+    if outputGraphing and not isQuestion and not isPTT:
+        if isScore:
+            outputImageUrl = comp_ans
+        else:
+            outputImageUrl = graphing.drawing([outputGraphing])
     outputText += '\n'
 
 
 
 
-def output_api(list, line_bot_api, event):
+def output_api(list):#, line_bot_api, event):
     global outputText
     global outputReply
     global outputImageUrl
     for listElement in list:
         output(listElement)
         #print(outputText)
-       # print(outputGraphing)
+        #print(outputGraphing)
         #print(outputImageUrl)
         outputReply.append(TextSendMessage(text=outputText))
-        print(outputReply)
+        #print(outputReply)
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
     line_bot_api.reply_message(
         event.reply_token, outputReply)
 
-
-
+output_api([['question', ['臺北市立大學', '體育學系', '教師數', '11'], ['臺北市立大學', '體育學系', '學生數', '198']]])
+output_api([['ptt', ['臺北市立大學', '體育學系', '沒有男老師\n女老師都長得像男老師'], ['臺北市立大學', '體育學系', '沒有女老師\n男老師都長得像女老師']]])
+output_api([['score', ['臺北市立大學', '體育學系', 'https://i.imgur.com/jieL5q9.jpg']]])
