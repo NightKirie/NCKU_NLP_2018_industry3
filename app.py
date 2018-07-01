@@ -8,8 +8,8 @@ from linebot.exceptions import (
         )
 from linebot.models import *
 
-import CKIP_Socket_Client
-from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, line_channel_secret
+import ckip
+from config import line_channel_access_token, line_channel_secret
 from forExcel import team3_excel_API as api3
 from output import output_api as api5
 
@@ -17,6 +17,9 @@ from output import output_api as api5
 # import tempfile, os
 # from imgurpython import ImgurClient
 # import Get_data
+# from config import client_id, client_secret, album_id, access_token, 
+#     refresh_token, line_channel_access_token, line_channel_secret
+
 
 
 # module level variable
@@ -25,7 +28,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(line_channel_access_token)
 handler = WebhookHandler(line_channel_secret)
 
-synonym = {}
+syno_depr = {}
+syno_school = {}
 
 # static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -58,42 +62,58 @@ def handle_message(event):
         
         init()
         
-        # tokenlize
-        ptoks = []
+        # tokenlize by jieba
         toks = [tok for tok in jieba.cut(event.message.text)]
 
+        # fetch school and department list
+        school = []
+        depr = []
+
         for tok in toks:
-            if tok in synonym:
-                ptoks.append((tok, 'sch'))
-            elif tok.strip() != '':
-                ptoks.append(CKIP_Socket_Client.seg(tok)[0])
+            if tok in syno_school:
+                school.append(syno_school[tok])
+            elif tok in syno_depr:
+                depr.append(syno_depr[tok])
 
-        print('message tokenlized with length: %d' % len(ptoks))
-        print(ptoks)
 
-        schools = []
+        # tokenlize by ckip
+        ctoks = ckip.seg(event.message.text)
 
-        for tok in ptoks:
-            if tok[1] == 'sch':
-                schools.append(synonym[tok[0]])
+        # fetch preference by 'Na' tag
+        pref = [tok[0] for tok in ctoks if tok[1] == 'Na' and tok[0] not in syno_depr and tok[0] not in syno_school]
 
-        depr = ['資訊工程學系'] * len(schools)
+        # set action
+        score_key = ['能不能上', '落點', '分析']
+        if any(k in event.message.text for k in score_key):
+            action = 'score'
+        elif len(school) == 1:
+            action = 'question'
+        else:
+            action = 'compare'
+
+        # error handling
+        if len(school) == 0:
+            line_bot_api.reply_message(event.reply_token, 'sorry，沒偵測到要查詢的學校，請再試一次')
+            return
+        elif len(school) != len(depr):
+            line_bot_api.reply_message(event.reply_token, 'sorry，偵測到的學校與系所對不上，請再試一次')
+            return
 
         # intent object:
         #   action (str): Action type. 
         #   school (list): List of school to be compared. Might be empty list.
         #   depr (list): List of department to be compared. Might be empty list.
         #   score (dict): Dict of scored, indexed by subject (cn, en, ma, sc, so). Might be empty dict.
-        #   pref (str): The preference user interested. Might be empty str.
+        #   pref (list): The preference user interested. Might be empty list.
         intent = {
-            'action': 'compare', 
-            'school':schools,
+            'action': action, 
+            'school':school,
             'depr':depr,
             'score': {},
-            'pref': '教師數'
+            'pref': pref
         }
 
-        print('intent:', str(intent))
+        print('intent:', repr(intent))
 
         # connect team3 API
         comp = api3(intent)
@@ -106,7 +126,7 @@ def handle_message(event):
 
 def init():
     """
-    initialize global variable and settings
+    initialize settings
     """
     # load zh-TW extension dictionary
     jieba.set_dictionary('./dictdata/dict.txt.big')
@@ -115,12 +135,19 @@ def init():
     jieba.load_userdict('./dictdata/userdict.txt')
 
     # load school name synonym
-    with open('./dictdata/synonym.txt', encoding='utf8') as fin:
+    with open('./dictdata/syno_school.txt', encoding='utf8') as fin:
         for line in fin:
             toks = line.strip().split()
             for tok in toks:
-                synonym[tok] = toks[0]
+                syno_school[tok] = toks[0]
                 
+    # load department name synonym
+    with open('./dictdata/syno_depr.txt', encoding='utf8') as fin:
+        for line in fin:
+            toks = line.strip().split()
+            for tok in toks:
+                syno_depr[tok] = toks[0]
+
     print('initialize complete')
 
 
