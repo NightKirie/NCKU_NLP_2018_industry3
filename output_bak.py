@@ -368,17 +368,11 @@ def output_api(list, line_bot_api, event):
     global outputImageUrl
     for listElement in list:
         output(listElement)
-
-        # DEBUG
         print(outputText)
-        print(outputGraphing)
-        print(outputImageUrl)
-
+        #print(outputGraphing)
+        #print(outputImageUrl)
         outputReply.append(TextSendMessage(text=outputText))
-
-        # DEBUG
-        print(outputReply)
-
+        #print(outputReply)
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
         line_bot_api.reply_message(event.reply_token, outputReply)
