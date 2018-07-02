@@ -8,12 +8,12 @@ from linebot.exceptions import (
         )
 from linebot.models import *
 
-import ckip
 from config import line_channel_access_token, line_channel_secret
 from forExcel import team3_excel_API as api3
 from output import output_api as api5
 
 # currently not used module
+# import ckip
 # import tempfile, os
 # from imgurpython import ImgurClient
 # import Get_data
@@ -30,6 +30,7 @@ handler = WebhookHandler(line_channel_secret)
 
 syno_depr = {}
 syno_school = {}
+syno_pref = {}
 
 # static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -66,19 +67,16 @@ def handle_message(event):
         # fetch school and department list
         school = []
         depr = []
+        pref = []
 
         for tok in toks:
             if tok in syno_school:
                 school.append(syno_school[tok])
             elif tok in syno_depr:
                 depr.append(syno_depr[tok])
+            elif tok in syno_pref:
+                pref.append(syno_pref)
 
-
-        # tokenlize by ckip
-        ctoks = ckip.seg(event.message.text)
-
-        # fetch preference by 'Na' tag
-        pref = [tok[0] for tok in ctoks if tok[1] == 'Na' and tok[0] not in syno_depr and tok[0] not in syno_school]
 
         # set action
         score_key = ['能不能上', '落點', '分析']
@@ -100,10 +98,6 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, [TextSendMessage(text='sorry，偵測到的學校與系所對不上，請再試一次')])
             return
 
-
-
-        # DEBUG: add test data
-        pref = ['教師數']
 
         # intent object:
         #   action (str): Action type. 
@@ -154,6 +148,14 @@ def init():
             toks = line.strip().split()
             for tok in toks:
                 syno_depr[tok] = toks[0]
+
+    # load preference synonym
+    with open('./dictdata/syno_pref.txt', encoding='utf8') as fin:
+        for line in fin:
+            toks = line.strip().split()
+            for tok in toks:
+                syno_pref[tok] = toks[0]
+
 
     jieba.initialize()
 
