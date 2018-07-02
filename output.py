@@ -367,6 +367,9 @@ def output_api(list, line_bot_api, event):
     global outputText
     global outputReply
     global outputImageUrl
+    outputText = ""
+    outputReply = []
+    outputImageUrl = ""
     for listElement in list:
         output(listElement)
 
@@ -380,8 +383,8 @@ def output_api(list, line_bot_api, event):
         # DEBUG
         print('[output.py] outputReply:', outputReply)
 
-        #if outputImageUrl:
-            #outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
+        if outputImageUrl:
+            outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
     line_bot_api.reply_message(event.reply_token, outputReply)
 
 #output_api([['question', ['臺北市立大學', '體育學系', '教師數', '11'], ['臺北市立大學', '體育學系', '學生數', '198']]])
