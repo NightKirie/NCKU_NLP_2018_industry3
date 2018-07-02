@@ -93,9 +93,12 @@ def handle_message(event):
         if len(school) == 0:
             line_bot_api.reply_message(event.reply_token, [TextSendMessage(text='sorry，沒偵測到要查詢的學校，請再試一次')])
             return
-        elif len(school) != len(depr):
+        elif len(depr) != 0 and len(school) != len(depr):
             line_bot_api.reply_message(event.reply_token, [TextSendMessage(text='sorry，偵測到的學校與系所對不上，請再試一次')])
             return
+
+        # DEBUG: add test data
+        pref = ['教師數']
 
         # intent object:
         #   action (str): Action type. 
