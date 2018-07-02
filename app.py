@@ -149,7 +149,7 @@ def init():
             for tok in toks:
                 syno_depr[tok] = toks[0]
 
-    print('initialize complete')
+    print('[app.py] initialize complete')
 
 
 
