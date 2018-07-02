@@ -357,7 +357,7 @@ def output(inputlist):
         if isScore:
             outputImageUrl = comp_ans
         else:
-            outputImageUrl = graphing.drawing([outputGraphing])
+            outputImageUrl = graphing.drawing(outputGraphing)
     outputText += '\n'
 
 
