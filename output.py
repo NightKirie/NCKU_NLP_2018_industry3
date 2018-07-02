@@ -31,7 +31,7 @@ def output(inputlist):
     comp_ans = ''
     
 
-    if '該搜尋條件不存在' or '' in comp_content:
+    if '該搜尋條件不存在' in comp_content:
         outputText += '該搜尋條件不存在，不好意思。\n'
         return
     elif 'question' in comp_content:
