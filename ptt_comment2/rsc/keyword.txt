@@ -1,0 +1,10 @@
+﻿circumstance 風氣 環境 師資 課程 資源
+recommand 偏好 第一 必推 推 不錯 推薦 介紹
+first_group 一類 一類組 文組
+second_group 二類 二類組 理科 理工科 理組
+third_group 三類 三類組
+public 公立 公立大學
+private 私立 私立大學 私大
+interview 面試 面試官
+post 公告
+topschool 頂尖大學 頂大
