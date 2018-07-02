@@ -42,7 +42,8 @@ def output(inputlist):
         isScore = True
     else:
         outputText += comp_content + ':\n'
-
+    
+    print(isScore)
     while i < len(inputlist):
         if isQuestion:
             if inputlist[i][0] not in '該搜尋條件不存在':
