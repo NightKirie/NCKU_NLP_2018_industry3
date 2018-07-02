@@ -63,7 +63,8 @@ def output(inputlist):
 
 
         ##學年度_x(B)、學校名稱_x(G)、系所名稱_x(I)、學年度_y(O)、學期(P)、學年度(V)沒有輸出
-
+        print(isQuestion)
+        print(comp_content)
         ##單純輸出文字
         if '設立別' in comp_content:
             if comp_ans == '':
