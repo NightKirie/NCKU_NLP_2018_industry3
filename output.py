@@ -48,7 +48,12 @@ def output(inputlist):
             comp_content = inputlist[i][2]
             comp_ans = inputlist[i][3]
         elif isPTT:
-            if len(inputlist[i]) is 3:
+            if inputlist[i][0] is "ptt":
+                j = 1
+                while j < len(inputlist[i]):
+                    comp_ans += inputlist[i][j] + "\n"
+                    j += 1
+            elif len(inputlist[i]) is 3:
                 comp = inputlist[i][0]
                 comp_department = inputlist[i][1]
                 comp_ans = inputlist[i][2]
@@ -325,7 +330,12 @@ def output(inputlist):
             outputText += replyText + '\n'
 
         elif 'ptt' in comp_content:
-            if len(inputlist[i]) is 3:
+            if inputlist[i][0] is "ptt":
+                if comp_ans == '':
+                    replyText = '找不到所查詢的相關資料'
+                else:
+                    replyText = '查詢資料如下(參考PTT)\n' + comp_ans               
+            elif len(inputlist[i]) is 3:
                 if comp_ans == '':
                     replyText = '找不到' + comp + comp_department + '相關的比較資料'
                 else:
