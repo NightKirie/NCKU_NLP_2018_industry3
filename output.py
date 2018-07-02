@@ -386,10 +386,10 @@ def output_api(list, line_bot_api, event):
     outputText = ""
     outputReply = []
     outputImageUrl = ""
-    if list is None:
-        outputReply.append(TextSendMessage(text='該搜尋條件不存在，不好意思。\n'))
-        line_bot_api.reply_message(event.reply_token, outputReply)
-        return
+    #if list is None:
+       # outputReply.append(TextSendMessage(text='該搜尋條件不存在，不好意思。\n'))
+       # line_bot_api.reply_message(event.reply_token, outputReply)
+        #return
     for listElement in list:
         output(listElement)
 
