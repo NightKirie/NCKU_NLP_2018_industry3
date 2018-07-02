@@ -75,7 +75,7 @@ def handle_message(event):
             elif tok in syno_depr:
                 depr.append(syno_depr[tok])
             elif tok in syno_pref:
-                pref.append(syno_pref)
+                pref.append(syno_pref[tok])
 
 
         # set action
