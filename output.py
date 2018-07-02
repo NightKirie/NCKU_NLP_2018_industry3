@@ -45,7 +45,7 @@ def output(inputlist):
 
     while i < len(inputlist):
         if isQuestion:
-            if inputlist[i][0] not in '該搜尋條件不存在':
+            if inputlist[i][0] not  '該搜尋條件不存在':
                 comp = inputlist[i][0]
                 comp_department = inputlist[i][1]
                 comp_content = inputlist[i][2]
