@@ -1,15 +1,18 @@
 # coding: utf-8
 import json
 import sys
+import os
 import re
 import itertools
 import random
 import jieba
 
-jieba.set_dictionary('res/dict.txt.big')
+RES_PATH = os.path.dirname(__file__) + '/res/'
+
+jieba.set_dictionary(RES_PATH + 'dict.txt.big')
 jieba.initialize()
 
-with open('res/all.txt') as f:
+with open(RES_PATH + 'all.txt') as f:
     key_map = {}
     for line in f.readlines():
         words = sorted([x for x in re.split(r'[ \n]', line) if x is not ''], key=len)
@@ -17,7 +20,7 @@ with open('res/all.txt') as f:
             key_map[word] = words[0]
             jieba.add_word(word)
 
-with open('res/tagged.json') as f:
+with open(RES_PATH + 'tagged.json') as f:
     articles = json.load(f)['articles']
 
 word_index = {}
@@ -38,8 +41,8 @@ def search(tags):
         return []
     
     mapped = set(key_map[x] for x in tags if x in key_map)
-    index_sets = [word_index[x] for x in mapped]
-    if len(index_sets) == 0:
+
+    if len(mapped) == 0:
         return []
     
     candidates = []
@@ -57,7 +60,7 @@ def search(tags):
                     added.add(i)
                     
                 a = articles[i]
-                base = len(mapped.difference(a['tags']))
+                base_dif = len(mapped.difference(a['tags']))
                 for s in a['messages']:
                     hit = 0
                     missed = 0
@@ -70,12 +73,10 @@ def search(tags):
                                 hit += 1
                             else:
                                 missed += 1
-                    candidates.append((base+missed, -len(tagset), -hit/len(segged), s))
+                    candidates.append((base_dif, missed, -len(tagset), -hit/len(segged), s))
         
         if len(candidates) > 0:
-            ret = [x[3] for x in sorted(candidates)][:10]
-            random.shuffle(ret)
-            return ret
+            return [x[4] for x in sorted(candidates)][:10]
     
     return []
 
