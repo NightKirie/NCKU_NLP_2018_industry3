@@ -370,14 +370,14 @@ def output_api(list, line_bot_api, event):
         output(listElement)
 
         # DEBUG
-        print(outputText)
-        print(outputGraphing)
-        print(outputImageUrl)
+        print('[output] outputText:', outputText)
+        print('[output] outputGraphing:', outputGraphing)
+        print('[output] outputImageUrl', outputImageUrl)
 
         outputReply.append(TextSendMessage(text=outputText))
 
         # DEBUG
-        print(outputReply)
+        print('[output] outputReply', outputReply)
 
         if outputImageUrl:
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))

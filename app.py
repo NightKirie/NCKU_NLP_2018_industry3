@@ -113,7 +113,8 @@ def handle_message(event):
             'pref': pref
         }
 
-        print('intent:', repr(intent))
+        # deubg message
+        print('[app.py] intent:', repr(intent))
 
         # connect team3 API
         comp = api3(intent)
