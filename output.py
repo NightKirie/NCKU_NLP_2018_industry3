@@ -32,7 +32,7 @@ def output(inputlist):
     
 
     if '該搜尋條件不存在' or '' in comp_content:
-        outputText += '該搜尋條件不存在，不好意思。\n\n'
+        outputText += '該搜尋條件不存在，不好意思。\n'
         return
     elif 'question' in comp_content:
         isQuestion = True
