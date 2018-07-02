@@ -79,7 +79,7 @@ def handle_message(event):
 
 
         # set action
-        score_key = ['可以上', '能不能上', '落點', '分析']
+        score_key = ['可以上', '能不能上', '落點', '分析', '學測分數']
         if any(k in event.message.text for k in score_key):
             action = 'score'
         elif len(school) == 1:
