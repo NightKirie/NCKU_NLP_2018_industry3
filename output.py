@@ -25,9 +25,11 @@ def output(inputlist):
     isPTT = None                    #判斷是不是PTT
     isScore = None                  #判斷是不是落點分析
 
-
+    comp = ''
     comp_content = inputlist[0]
-
+    comp_department = ''
+    comp_ans = ''
+    
 
     if '該搜尋條件不存在' in comp_content:
         outputText += comp_content + '，不好意思。\n\n'
