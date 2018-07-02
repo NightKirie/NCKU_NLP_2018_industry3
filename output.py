@@ -45,10 +45,14 @@ def output(inputlist):
 
     while i < len(inputlist):
         if isQuestion:
-            comp = inputlist[i][0]
-            comp_department = inputlist[i][1]
-            comp_content = inputlist[i][2]
-            comp_ans = inputlist[i][3]
+            if inputlist[i][0] not '該搜尋條件不存在':
+                comp = inputlist[i][0]
+                comp_department = inputlist[i][1]
+                comp_content = inputlist[i][2]
+                comp_ans = inputlist[i][3]
+            else:
+                outputText += '該搜尋條件不存在\n'
+                return
         elif isPTT:
             if inputlist[i][0] is "ptt":
                 j = 1
