@@ -108,7 +108,7 @@ def team3_excel_API(team1_dict):
             return lst
         #excel中有找到大於一個的pref符合user的pref
         else:
-            lst = [['qusetion']]
+            lst = [['question']]
             match = 0 #看是第幾個項目符合到pref
             for i in match_list:
                 for j in data_index:
