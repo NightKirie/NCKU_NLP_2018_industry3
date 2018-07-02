@@ -1,6 +1,8 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+import ptt_comment 
+import ptt_comment2
 def team3_excel_API(team1_dict):
     ####下面都是google sheet的東西########
     scope = ['https://spreadsheets.google.com/feeds',
@@ -106,7 +108,7 @@ def team3_excel_API(team1_dict):
             return lst
         #excel中有找到大於一個的pref符合user的pref
         else:
-            lst = [['question']]
+            lst = [['qusetion']]
             match = 0 #看是第幾個項目符合到pref
             for i in match_list:
                 for j in data_index:
@@ -137,11 +139,24 @@ def team3_excel_API(team1_dict):
                 lst[0].append(score_ans)
                 return lst
 
-
+##def search(list_of_string):
+##    out_string = ["PTT的輸出結果1", "PTT的輸出結果2", "PTT的輸出結果3", "PTT的輸出結果4", "PTT的輸出結果5"]
+##    return out_string
 
 def ptt_API(team1_dict):
-    ptt_lst = '<要return一個list回去給上面的 compare func，格式trello有>'
-    return ptt_lst
+    list_of_string = []
+    school_depr = []
+    for i, j in zip(team1_dict['school'], team1_dict['depr']):
+        ##school_depr_tmp = i + j
+        list_of_string.append(i)
+        list_of_string.append(j)
+    for i in team1_dict['pref']:
+        list_of_string.append(i)
+    ##ptt_lst = '<要return一個list回去給上面的 compare func，格式trello有>'
+    ptt_list = [['ptt']]
+    ptt_list[0].append(['ptt']+ptt_comment.search(list_of_string)+ptt_comment2.search(list_of_string))
+    return  ptt_list
+    ##return ptt_lst
 
 if __name__ == '__main__':
     line_bot_api = ''
@@ -152,8 +167,8 @@ if __name__ == '__main__':
         'line_bot_api':line_bot_api,
         'event':line_bot_api_event,
         'action':"compare",
-        'school':['國立成功大學'],
-        'depr':['資訊工程學系'],
+        'school':['國立成功大學', '國立清華大學'],
+        'depr':['資訊工程學系', '電機工程學系'],
         'score':{},
         'pref':[]
     }
@@ -224,4 +239,4 @@ if __name__ == '__main__':
     'pref':[]
     }
 
-    print(team3_excel_API(T5_DICT))
+    print(team3_excel_API(T1_DICT))
