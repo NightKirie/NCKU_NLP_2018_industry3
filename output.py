@@ -258,7 +258,7 @@ def output(inputlist):
 
         ##輸出文字及長條圖
         elif '普通生錄取分數' in comp_content:
-            if comp_a_ans == '':
+            if comp_ans == '':
                 replyText = '找不到' + comp + comp_department + '，這個系所的普通生錄取分數╮(╯_╰)╭'
                 del outputGraphing[i]    #移除找不到資料的，不要繪圖
                 i -= 1
