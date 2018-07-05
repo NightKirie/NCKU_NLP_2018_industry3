@@ -408,7 +408,3 @@ def output_api(list, line_bot_api, event):
             outputReply.append(ImageSendMessage(original_content_url=outputImageUrl, preview_image_url=outputImageUrl))
     line_bot_api.reply_message(event.reply_token, outputReply)
 
-#output_api([['question', ['臺北市立大學', '體育學系', '教師數', '11'], ['臺北市立大學', '體育學系', '學生數', '198']]])
-#output_api([['ptt', ['臺北市立大學', '體育學系', '沒有男老師\n女老師都長得像男老師'], ['臺北市立大學', '體育學系', '沒有女老師\n男老師都長得像女老師']]])
-#output_api([['score', ['臺北市立大學', '體育學系', 'https://i.imgur.com/jieL5q9.jpg']]])
-#output_api([['ptt', ['成大', '資訊' , '校狗' , '成大校狗都會在d24門口睡覺 都不太會去吠人']]])

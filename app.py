@@ -12,14 +12,6 @@ from config import line_channel_access_token, line_channel_secret
 from forExcel import team3_excel_API as api3
 from output import output_api as api5
 
-# currently not used module
-# import ckip
-# import tempfile, os
-# from imgurpython import ImgurClient
-# import Get_data
-# from config import client_id, client_secret, album_id, access_token, 
-#     refresh_token, line_channel_access_token, line_channel_secret
-
 
 
 # module level variable
@@ -31,8 +23,6 @@ handler = WebhookHandler(line_channel_secret)
 syno_depr = {}
 syno_school = {}
 syno_pref = {}
-
-# static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
 
@@ -160,7 +150,6 @@ def init():
     jieba.initialize()
 
     print('[app.py] initialize complete')
-
 
 
 

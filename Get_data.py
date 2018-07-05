@@ -14,8 +14,6 @@ gc = gspread.authorize(credentials)
 sht2 = gc.open_by_url(
     'https://docs.google.com/spreadsheets/d/1agGycINr6GtmTT3hSOEBMdygH7pJQHl1qRez0viccxY/edit#gid=0').sheet1
 
-# Select worksheet by index. Worksheet indexes start from zero
-# worksheet = sht2.get_worksheet(0)
 
 # Get all values from the first row
 values_list = sht2.get_all_values()

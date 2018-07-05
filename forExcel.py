@@ -14,9 +14,6 @@ def team3_excel_API(team1_dict):
     # Open a worksheet from spreadsheet with one shot
     sht2 = gc.open_by_url('https://docs.google.com/spreadsheets/d/1VakyqZjkElL8rJkSLgBbS4KWohvfRzDCUvFBKpvZ4aQ/edit#gid=2093220248').sheet1
 
-    # Select worksheet by index. Worksheet indexes start from zero
-    #worksheet = sht2.get_worksheet(0)
-
     # Get all values from the first row
     values_list = sht2.get_all_values()
 
@@ -29,27 +26,7 @@ def team3_excel_API(team1_dict):
     if(team1_dict['action'] == 'compare'):
         #####比較全部項目####
         if(len(team1_dict['pref'])==0):
-            '''#######ptt########因為改成全部比較的話 就是call ptt API##############ptt###########
-            lst = [[] for _ in range(len(data_index)-9)]
-            count = 0
-            #加入類別
-            for i in range(9, len(data_index)):
-                lst[count].append(data_index[i])
-                count+=1
-            #每個 類別 去爬
-            for h in range(0, len(data_index)-9):
-                #每個 school跟department 去爬
-                tmp=[]
-                for i in range(len(team1_dict['school'])):
-                    tmp.append(team1_dict['school'][i])
-                    tmp.append(team1_dict['depar'][i])
-                    #看看該school和department存在與否
-                    for j in values_list:
-                        if(j[6]==team1_dict['school'][i] and j[8]==team1_dict['depr'][i]):
-                            tmp.append(j[h+9])
-                            lst[h].append(tmp)
-                            tmp=[]
-            '''##########ptt#####因為改成全部比較的話 就是call ptt API###########ptt##############
+            # call ptt API
             lst = ptt_API(team1_dict)
             return lst
 
@@ -139,9 +116,6 @@ def team3_excel_API(team1_dict):
                 lst[0].append(score_ans)
                 return lst
 
-##def search(list_of_string):
-##    out_string = ["PTT的輸出結果1", "PTT的輸出結果2", "PTT的輸出結果3", "PTT的輸出結果4", "PTT的輸出結果5"]
-##    return out_string
 
 def ptt_API(team1_dict):
     list_of_string = []
